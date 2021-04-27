@@ -1,9 +1,8 @@
 // Использование текстовых полей JTextField
 import javax.swing.*;
 
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.FlowLayout;
 
 public class MainWindow extends JFrame
 {
@@ -17,10 +16,10 @@ public class MainWindow extends JFrame
         // Создание текстовых полей
         smallField = new JTextField(15);
         smallField.setToolTipText("Короткое поле");
-        bigField = new JTextField("Текст поля", 25);
+        bigField = new JTextField("Текст поля", 15);
         bigField.setToolTipText("Длиное поле");
         // Настройка шрифта
-        bigField.setFont(new Font("Dialog", Font.PLAIN, 14));
+        bigField.setFont(new Font("Dialog", Font.PLAIN, 15));
         bigField.setHorizontalAlignment(JTextField.RIGHT);
         // Слушатель окончания ввода
         smallField.addActionListener(new ActionListener() {
@@ -31,16 +30,17 @@ public class MainWindow extends JFrame
             }
         });
         // Поле с паролем
-        JPasswordField password = new JPasswordField(12);
+        JPasswordField password = new JPasswordField(15);
         password.setEchoChar('*');
         // Создание панели с текстовыми полями
-        JPanel contents = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel contents = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
         contents.add(smallField);
-        contents.add(bigField  );
-        contents.add(password  );
+        contents.add(bigField);
+        contents.add(password);
         setContentPane(contents);
         // Определяем размер окна и выводим его на экран
-        setSize(400, 130);
+        setSize(480, 640);
         setVisible(true);
     }
     public static void main(String[] args) {
