@@ -210,17 +210,17 @@ public class MainWindow extends JFrame
                 try(FileReader reader = new FileReader("saved\\playerTwoThrow.txt"))
                 {
                     // читаем посимвольно
-                    int c;
-                    while((c=reader.read())!=-1){
-                        x2 = Character.getNumericValue(c);
-                        System.out.print((char)c);
+                    int c1;
+                    while((c1=reader.read())!=-1){
+                        x2 = Character.getNumericValue(c1);
+                        System.out.print((char)c1);
                     }
                 }
                 catch(IOException ex){
 
                     System.out.println(ex.getMessage());
                 }
-                sum2 = sum2 + x1;
+                sum2 = sum2 + x2;
                 numberStr2 = String.valueOf(sum2);
                 smallField4.setText(numberStr2);
                 if(sum2 >= 21){
