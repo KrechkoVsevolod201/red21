@@ -9,23 +9,26 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Random;
 
 public class MainWindow extends JFrame
 {
     // Текстовые поля
-    JTextField smallField1, smallField2;
-    private Timer timer;
+    JTextField smallField1, smallField2, smallField3, smallField4, smallField5;
+    //private Timer timer;
     public final JButton throwButton1 = new JButton("Бросить кубик p1");
     public final JButton throwButton2 = new JButton("Бросить кубик p2");
     public final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
+    public int number;
+    public String numberStr;
     public MainWindow()
     {
         super("21");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         // Определяем размер окна и выводим его на экран
-        setSize(640, 360);
+        setSize(640, 850);
         setVisible(true);
         try {
             setContentPane(createContentPane()); // передаем как параметр в коструктор
@@ -83,7 +86,59 @@ public class MainWindow extends JFrame
         smallField2.setFont(font);
         totalGUI.add(smallField2);
 
+        // Создание текстовых полей
+        smallField3 = new JTextField("0");
+        smallField3.setToolTipText("Короткое поле");
+        smallField3.setLocation(100, 150); /* надпись синего цвета*/
+        smallField3.setSize(150, 60); // размер области надписи
+        // Слушатель окончания ввода
+        smallField3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Отображение введенного текста
+                JOptionPane.showMessageDialog(MainWindow.this,
+                        "Ваше слово: " + smallField3.getText());
+            }
+        });
+        smallField3.setHorizontalAlignment(JTextField.CENTER);
+        smallField3.setEditable(false);
+        smallField3.setFont(font);
+        totalGUI.add(smallField3);
 
+        // Создание текстовых полей
+        smallField4 = new JTextField("0");
+        smallField4.setToolTipText("Короткое поле");
+        smallField4.setLocation(350, 150); /* надпись синего цвета*/
+        smallField4.setSize(150, 60); // размер области надписи
+        // Слушатель окончания ввода
+        smallField4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Отображение введенного текста
+                JOptionPane.showMessageDialog(MainWindow.this,
+                        "Ваше слово: " + smallField4.getText());
+            }
+        });
+        smallField4.setHorizontalAlignment(JTextField.CENTER);
+        smallField4.setEditable(false);
+        smallField4.setFont(font);
+        totalGUI.add(smallField4);
+
+        // Создание текстовых полей
+        smallField5 = new JTextField("0");
+        smallField5.setToolTipText("Короткое поле");
+        smallField5.setLocation(225, 250); /* надпись синего цвета*/
+        smallField5.setSize(150, 60); // размер области надписи
+        // Слушатель окончания ввода
+        smallField5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Отображение введенного текста
+                JOptionPane.showMessageDialog(MainWindow.this,
+                        "Ваше слово: " + smallField5.getText());
+            }
+        });
+        smallField5.setHorizontalAlignment(JTextField.CENTER);
+        smallField5.setEditable(false);
+        smallField5.setFont(font);
+        totalGUI.add(smallField5);
 
         // Создадим ярлык (надпись) синего цвета
         JLabel blueLabel = new JLabel("Добро пожаловать, добро пожаловать в программу 17");
@@ -96,7 +151,7 @@ public class MainWindow extends JFrame
 
         // Создадим ярлык (надпись) синего цвета
         JLabel poweredLabel = new JLabel("Powered by CHPOK Labs");
-        poweredLabel.setLocation(480, 210); /* надпись синего цвета*/
+        poweredLabel.setLocation(480, 700); /* надпись синего цвета*/
         poweredLabel.setFont(new Font("Dialog", Font.ROMAN_BASELINE, 12));
         poweredLabel.setSize(640, 100); // размер области надписи
         //blueLabel.setHorizontalAlignment(0);
@@ -104,27 +159,45 @@ public class MainWindow extends JFrame
         totalGUI.add(poweredLabel); // добавляем текстовую метку на поверхность
 
         // Создаём кнопку---------------
-        throwButton1.setLocation(100, 200); // расположение кнопки
+        throwButton1.setLocation(100, 350); // расположение кнопки
         throwButton1.setSize(200, 40); // размер кнопки
         throwButton1.setBackground(new Color(0xC175EF));
         // создаём объект-обработчик события
+        throwButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                number = new Random().nextInt(6);
+                number++;
+                numberStr = String.valueOf(number);
+                // Отображение введенного текста
+                smallField1.setText(numberStr);
+            }
+        });
 
 
         throwButton1.setActionCommand("Open");
         totalGUI.add(throwButton1); // добавляем кнопку на поверхность
 
         // Создаём кнопку---------------
-        throwButton2.setLocation(300, 200); // расположение кнопки
+        throwButton2.setLocation(300, 350); // расположение кнопки
         throwButton2.setSize(200, 40); // размер кнопки
         throwButton2.setBackground(new Color(0xC175EF));
         // создаём объект-обработчик события
+        throwButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                number = new Random().nextInt(6);
+                number++;
+                numberStr = String.valueOf(number);
+                // Отображение введенного текста
+                smallField2.setText(numberStr);
+            }
+        });
 
 
         throwButton2.setActionCommand("Open");
         totalGUI.add(throwButton2); // добавляем кнопку на поверхность
 
         // Создаём кнопку---------------
-        rickButton.setLocation(200, 250); // расположение кнопки
+        rickButton.setLocation(200, 400); // расположение кнопки
         rickButton.setSize(200, 40); // размер кнопки
         rickButton.setBackground(new Color(0xFF0000));
 
@@ -159,7 +232,7 @@ public class MainWindow extends JFrame
         ImageIcon imageIcon = new ImageIcon(image);
         imageIcon.setImageObserver(label);
         label.setIcon(imageIcon);
-        label.setLocation(200, 350); // расположение кнопки
+        label.setLocation(200, 450); // расположение кнопки
         label.setSize(250, 300); // размер кнопки
         totalGUI.add(label);
 
