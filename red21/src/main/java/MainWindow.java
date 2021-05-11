@@ -14,6 +14,7 @@ public class MainWindow extends JFrame
 {
     // Текстовые поля
     JTextField smallField1, smallField2;
+    private Timer timer;
     public final JButton throwButton1 = new JButton("Бросить кубик p1");
     public final JButton throwButton2 = new JButton("Бросить кубик p2");
     public final JButton rickButton = new JButton("Rick Roll");
@@ -33,13 +34,18 @@ public class MainWindow extends JFrame
         }
         setVisible(true); //  форма будет видимой
     }
-    public JPanel createContentPane() throws URISyntaxException {
+
+
+
+
+    public JPanel createContentPane() throws URISyntaxException  {
 
         // We create a bottom JPanel to place everything on.
         // сначала создаётся "панель", на которой и размещаюся
         // остальные компоненты
         JPanel totalGUI = new JPanel(); // создаём "поверхность"
         totalGUI.setLayout(null);
+
 
         // Создание текстовых полей
         smallField1 = new JTextField("0");
@@ -132,8 +138,8 @@ public class MainWindow extends JFrame
         rickButton.setActionCommand("Open");
         rickButton.addActionListener(new OpenUrlAction());
         totalGUI.add(rickButton); // добавляем кнопку на поверхность
-
-        String path = "C:\\Users\\GachiBoy\\Documents\\GitHub\\red21\\red21\\images\\Errror.jpg";
+/*
+        String path = "C:\\Users\\GachiBoy\\Documents\\GitHub\\red21\\red21\\images\\tenor.gif";
         File file = new File(path);
         BufferedImage image = null;
         try {
@@ -143,7 +149,18 @@ public class MainWindow extends JFrame
         }
         JLabel label = new JLabel(new ImageIcon(image));
         label.setLocation(200, 350); // расположение кнопки
-        label.setSize(200, 40); // размер кнопки
+        label.setSize(250, 300); // размер кнопки
+        totalGUI.add(label);
+
+ */
+
+        JLabel label = new JLabel("test");
+        Image image = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
+        ImageIcon imageIcon = new ImageIcon(image);
+        imageIcon.setImageObserver(label);
+        label.setIcon(imageIcon);
+        label.setLocation(200, 350); // расположение кнопки
+        label.setSize(250, 300); // размер кнопки
         totalGUI.add(label);
 
         totalGUI.setOpaque(true);
