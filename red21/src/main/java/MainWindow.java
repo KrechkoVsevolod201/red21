@@ -14,7 +14,7 @@ import java.util.Random;
 public class MainWindow extends JFrame
 {
     // Текстовые поля
-    JTextField smallField1, smallField2, smallField3, smallField4, smallField5;
+    JTextField smallField1, smallField2, smallField3, smallField4, smallField5, smallField6;
     //private Timer timer;
     public final JButton throwButton1 = new JButton("Бросить кубик p1");
     public final JButton throwButton2 = new JButton("Бросить кубик p2");
@@ -126,7 +126,7 @@ public class MainWindow extends JFrame
         smallField5 = new JTextField("0");
         smallField5.setToolTipText("Короткое поле");
         smallField5.setLocation(225, 250); /* надпись синего цвета*/
-        smallField5.setSize(150, 60); // размер области надписи
+        smallField5.setSize(75, 60); // размер области надписи
         // Слушатель окончания ввода
         smallField5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -140,10 +140,28 @@ public class MainWindow extends JFrame
         smallField5.setFont(font);
         totalGUI.add(smallField5);
 
+        // Создание текстовых полей
+        smallField6 = new JTextField("0");
+        smallField6.setToolTipText("Короткое поле");
+        smallField6.setLocation(300, 250); /* надпись синего цвета*/
+        smallField6.setSize(75, 60); // размер области надписи
+        // Слушатель окончания ввода
+        smallField6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Отображение введенного текста
+                JOptionPane.showMessageDialog(MainWindow.this,
+                        "Ваше слово: " + smallField6.getText());
+            }
+        });
+        smallField6.setHorizontalAlignment(JTextField.CENTER);
+        smallField6.setEditable(false);
+        smallField6.setFont(font);
+        totalGUI.add(smallField6);
+
         // Создадим ярлык (надпись) синего цвета
-        JLabel blueLabel = new JLabel("Добро пожаловать, добро пожаловать в программу 17");
+        JLabel blueLabel = new JLabel("Добро пожаловать, добро пожаловать в очко");
         blueLabel.setLocation(100, -40); /* надпись синего цвета*/
-        blueLabel.setFont(new Font("Dialog", Font.ROMAN_BASELINE, 17));
+        blueLabel.setFont(new Font("Dialog", Font.TYPE1_FONT, 20));
         blueLabel.setSize(640, 100); // размер области надписи
         //blueLabel.setHorizontalAlignment(0);
         blueLabel.setForeground(Color.blue); // задаём цвет
@@ -151,8 +169,8 @@ public class MainWindow extends JFrame
 
         // Создадим ярлык (надпись) синего цвета
         JLabel poweredLabel = new JLabel("Powered by CHPOK Labs");
-        poweredLabel.setLocation(480, 700); /* надпись синего цвета*/
-        poweredLabel.setFont(new Font("Dialog", Font.ROMAN_BASELINE, 12));
+        poweredLabel.setLocation(480, 725); /* надпись синего цвета*/
+        poweredLabel.setFont(new Font("Dialog", Font.TYPE1_FONT, 12));
         poweredLabel.setSize(640, 100); // размер области надписи
         //blueLabel.setHorizontalAlignment(0);
         poweredLabel.setForeground(Color.blue); // задаём цвет
