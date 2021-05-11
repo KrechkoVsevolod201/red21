@@ -10,19 +10,20 @@ import java.net.URISyntaxException;
 public class MainWindow extends JFrame
 {
     // Текстовые поля
-    JTextField smallField;
-    public final JButton arrayButton = new JButton("Массив");
-    public final JButton functionButton = new JButton("Функция");
+    JTextField smallField1, smallField2;
+    public final JButton throwButton1 = new JButton("Бросить кубик p1");
+    public final JButton throwButton2 = new JButton("Бросить кубик p2");
     public final JButton rickButton = new JButton("Rick Roll");
-    private final JButton calculatorButton = new JButton("Калькулятор");
+    Font font = new Font("Serif", Font.BOLD, 35);
+   // private final JButton calculatorButton = new JButton("Калькулятор");
 
     public MainWindow()
     {
-        super("Текстовые поля");
+        super("21");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         // Определяем размер окна и выводим его на экран
-        setSize(640, 320);
+        setSize(640, 360);
         setVisible(true);
         try {
             setContentPane(createContentPane()); // передаем как параметр в коструктор
@@ -40,19 +41,40 @@ public class MainWindow extends JFrame
         totalGUI.setLayout(null);
 
         // Создание текстовых полей
-        smallField = new JTextField();
-        smallField.setToolTipText("Короткое поле");
-        smallField.setLocation(100, 50); /* надпись синего цвета*/
-        smallField.setSize(140, 30); // размер области надписи
+        smallField1 = new JTextField("0");
+        smallField1.setToolTipText("Короткое поле");
+        smallField1.setLocation(100, 50); /* надпись синего цвета*/
+        smallField1.setSize(150, 60); // размер области надписи
         // Слушатель окончания ввода
-        smallField.addActionListener(new ActionListener() {
+        smallField1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Отображение введенного текста
                 JOptionPane.showMessageDialog(MainWindow.this,
-                        "Ваше слово: " + smallField.getText());
+                        "Ваше слово: " + smallField1.getText());
             }
         });
-        totalGUI.add(smallField);
+        smallField1.setHorizontalAlignment(JTextField.CENTER);
+        smallField1.setFont(font);
+        smallField1.setEditable(false);
+        totalGUI.add(smallField1);
+
+        // Создание текстовых полей
+        smallField2 = new JTextField("0");
+        smallField2.setToolTipText("Короткое поле");
+        smallField2.setLocation(350, 50); /* надпись синего цвета*/
+        smallField2.setSize(150, 60); // размер области надписи
+        // Слушатель окончания ввода
+        smallField2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Отображение введенного текста
+                JOptionPane.showMessageDialog(MainWindow.this,
+                        "Ваше слово: " + smallField2.getText());
+            }
+        });
+        smallField2.setHorizontalAlignment(JTextField.CENTER);
+        smallField2.setEditable(false);
+        smallField2.setFont(font);
+        totalGUI.add(smallField2);
 
 
 
@@ -75,27 +97,27 @@ public class MainWindow extends JFrame
         totalGUI.add(poweredLabel); // добавляем текстовую метку на поверхность
 
         // Создаём кнопку---------------
-        arrayButton.setLocation(300, 100); // расположение кнопки
-        arrayButton.setSize(100, 40); // размер кнопки
-        arrayButton.setBackground(new Color(0xC175EF));
+        throwButton1.setLocation(100, 200); // расположение кнопки
+        throwButton1.setSize(200, 40); // размер кнопки
+        throwButton1.setBackground(new Color(0xC175EF));
         // создаём объект-обработчик события
 
 
-        arrayButton.setActionCommand("Open");
-        totalGUI.add(arrayButton); // добавляем кнопку на поверхность
+        throwButton1.setActionCommand("Open");
+        totalGUI.add(throwButton1); // добавляем кнопку на поверхность
 
         // Создаём кнопку---------------
-        functionButton.setLocation(200, 100); // расположение кнопки
-        functionButton.setSize(100, 40); // размер кнопки
-        functionButton.setBackground(new Color(0xC175EF));
+        throwButton2.setLocation(300, 200); // расположение кнопки
+        throwButton2.setSize(200, 40); // размер кнопки
+        throwButton2.setBackground(new Color(0xC175EF));
         // создаём объект-обработчик события
 
 
-        functionButton.setActionCommand("Open");
-        totalGUI.add(functionButton); // добавляем кнопку на поверхность
+        throwButton2.setActionCommand("Open");
+        totalGUI.add(throwButton2); // добавляем кнопку на поверхность
 
         // Создаём кнопку---------------
-        rickButton.setLocation(200, 150); // расположение кнопки
+        rickButton.setLocation(200, 250); // расположение кнопки
         rickButton.setSize(200, 40); // размер кнопки
         rickButton.setBackground(new Color(0xFF0000));
 
@@ -109,12 +131,6 @@ public class MainWindow extends JFrame
         rickButton.setActionCommand("Open");
         rickButton.addActionListener(new OpenUrlAction());
         totalGUI.add(rickButton); // добавляем кнопку на поверхность
-
-        // Создаём кнопку---------------
-        calculatorButton.setLocation(200, 200); // расположение кнопки
-        calculatorButton.setSize(200, 40); // размер кнопки
-        calculatorButton.setBackground(new Color(0x28A888));
-
 
 
         totalGUI.setOpaque(true);
