@@ -1,11 +1,10 @@
 // Использование текстовых полей JTextField
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -15,13 +14,12 @@ public class MainWindow extends JFrame
 {
     // Текстовые поля
     JTextField smallField1, smallField2, smallField3, smallField4, smallField5, smallField6;
-    //private Timer timer;
     public final JButton throwButton1 = new JButton("Бросить кубик p1");
     public final JButton throwButton2 = new JButton("Бросить кубик p2");
     public final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
-    public int number;
-    public String numberStr;
+    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
+    public String numberStr1, numberStr2;
     public MainWindow()
     {
         super("21");
@@ -55,14 +53,7 @@ public class MainWindow extends JFrame
         smallField1.setToolTipText("Короткое поле");
         smallField1.setLocation(100, 50); /* надпись синего цвета*/
         smallField1.setSize(150, 60); // размер области надписи
-        // Слушатель окончания ввода
-        smallField1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Отображение введенного текста
-                JOptionPane.showMessageDialog(MainWindow.this,
-                        "Ваше слово: " + smallField1.getText());
-            }
-        });
+
         smallField1.setHorizontalAlignment(JTextField.CENTER);
         smallField1.setFont(font);
         smallField1.setEditable(false);
@@ -73,14 +64,7 @@ public class MainWindow extends JFrame
         smallField2.setToolTipText("Короткое поле");
         smallField2.setLocation(350, 50); /* надпись синего цвета*/
         smallField2.setSize(150, 60); // размер области надписи
-        // Слушатель окончания ввода
-        smallField2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Отображение введенного текста
-                JOptionPane.showMessageDialog(MainWindow.this,
-                        "Ваше слово: " + smallField2.getText());
-            }
-        });
+
         smallField2.setHorizontalAlignment(JTextField.CENTER);
         smallField2.setEditable(false);
         smallField2.setFont(font);
@@ -91,14 +75,7 @@ public class MainWindow extends JFrame
         smallField3.setToolTipText("Короткое поле");
         smallField3.setLocation(100, 150); /* надпись синего цвета*/
         smallField3.setSize(150, 60); // размер области надписи
-        // Слушатель окончания ввода
-        smallField3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Отображение введенного текста
-                JOptionPane.showMessageDialog(MainWindow.this,
-                        "Ваше слово: " + smallField3.getText());
-            }
-        });
+
         smallField3.setHorizontalAlignment(JTextField.CENTER);
         smallField3.setEditable(false);
         smallField3.setFont(font);
@@ -109,14 +86,7 @@ public class MainWindow extends JFrame
         smallField4.setToolTipText("Короткое поле");
         smallField4.setLocation(350, 150); /* надпись синего цвета*/
         smallField4.setSize(150, 60); // размер области надписи
-        // Слушатель окончания ввода
-        smallField4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Отображение введенного текста
-                JOptionPane.showMessageDialog(MainWindow.this,
-                        "Ваше слово: " + smallField4.getText());
-            }
-        });
+
         smallField4.setHorizontalAlignment(JTextField.CENTER);
         smallField4.setEditable(false);
         smallField4.setFont(font);
@@ -127,14 +97,7 @@ public class MainWindow extends JFrame
         smallField5.setToolTipText("Короткое поле");
         smallField5.setLocation(225, 250); /* надпись синего цвета*/
         smallField5.setSize(75, 60); // размер области надписи
-        // Слушатель окончания ввода
-        smallField5.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Отображение введенного текста
-                JOptionPane.showMessageDialog(MainWindow.this,
-                        "Ваше слово: " + smallField5.getText());
-            }
-        });
+
         smallField5.setHorizontalAlignment(JTextField.CENTER);
         smallField5.setEditable(false);
         smallField5.setFont(font);
@@ -145,14 +108,7 @@ public class MainWindow extends JFrame
         smallField6.setToolTipText("Короткое поле");
         smallField6.setLocation(300, 250); /* надпись синего цвета*/
         smallField6.setSize(75, 60); // размер области надписи
-        // Слушатель окончания ввода
-        smallField6.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Отображение введенного текста
-                JOptionPane.showMessageDialog(MainWindow.this,
-                        "Ваше слово: " + smallField6.getText());
-            }
-        });
+
         smallField6.setHorizontalAlignment(JTextField.CENTER);
         smallField6.setEditable(false);
         smallField6.setFont(font);
@@ -183,12 +139,47 @@ public class MainWindow extends JFrame
         // создаём объект-обработчик события
         throwButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                number = new Random().nextInt(6);
-                number++;
-                numberStr = String.valueOf(number);
+                number1 = new Random().nextInt(6);
+                number1++;
+                numberStr1 = String.valueOf(number1);
                 // Отображение введенного текста
-                smallField1.setText(numberStr);
+                smallField1.setText(numberStr1);
+
+                try(FileWriter writer = new FileWriter("saved\\playerOneThrow.txt", false))
+                {
+                    // запись всей строки
+                    writer.write(numberStr1);
+                    writer.flush();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+
+                try(FileReader reader = new FileReader("saved\\playerOneThrow.txt"))
+                {
+                    // читаем посимвольно
+                    int c;
+                    while((c=reader.read())!=-1){
+                        x1 = Character.getNumericValue(c);
+                        System.out.print((char)c);
+                    }
+                }
+                catch(IOException ex){
+
+                    System.out.println(ex.getMessage());
+                }
+                sum1 = sum1 + x1;
+                numberStr1 = String.valueOf(sum1);
+                smallField3.setText(numberStr1);
+                if(sum1 >= 21){
+                    sum1 = 0;
+                    score1++;
+                    numberStr1 = String.valueOf(score1);
+                    smallField5.setText(numberStr1);
+                }
+
             }
+
         });
 
 
@@ -202,14 +193,46 @@ public class MainWindow extends JFrame
         // создаём объект-обработчик события
         throwButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                number = new Random().nextInt(6);
-                number++;
-                numberStr = String.valueOf(number);
+                number2 = new Random().nextInt(6);
+                number2++;
+                numberStr2 = String.valueOf(number2);
                 // Отображение введенного текста
-                smallField2.setText(numberStr);
-            }
-        });
+                smallField2.setText(numberStr2);
+                try(FileWriter writer = new FileWriter("saved\\playerTwoThrow.txt", false))
+                {
+                    // запись всей строки
+                    writer.write(numberStr2);
+                    writer.flush();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+                try(FileReader reader = new FileReader("saved\\playerTwoThrow.txt"))
+                {
+                    // читаем посимвольно
+                    int c;
+                    while((c=reader.read())!=-1){
+                        x2 = Character.getNumericValue(c);
+                        System.out.print((char)c);
+                    }
+                }
+                catch(IOException ex){
 
+                    System.out.println(ex.getMessage());
+                }
+                sum2 = sum2 + x1;
+                numberStr2 = String.valueOf(sum2);
+                smallField4.setText(numberStr2);
+                if(sum2 >= 21){
+                    sum2 = 0;
+                    score2++;
+                    numberStr2 = String.valueOf(score2);
+                    smallField6.setText(numberStr2);
+                }
+
+            }
+
+        });
 
         throwButton2.setActionCommand("Open");
         totalGUI.add(throwButton2); // добавляем кнопку на поверхность
@@ -245,7 +268,7 @@ public class MainWindow extends JFrame
 
  */
 
-        JLabel label = new JLabel("test");
+        JLabel label = new JLabel();
         Image image = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
         ImageIcon imageIcon = new ImageIcon(image);
         imageIcon.setImageObserver(label);
