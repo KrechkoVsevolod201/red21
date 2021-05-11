@@ -1,8 +1,11 @@
 // Использование текстовых полей JTextField
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -15,8 +18,6 @@ public class MainWindow extends JFrame
     public final JButton throwButton2 = new JButton("Бросить кубик p2");
     public final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
-   // private final JButton calculatorButton = new JButton("Калькулятор");
-
     public MainWindow()
     {
         super("21");
@@ -132,8 +133,21 @@ public class MainWindow extends JFrame
         rickButton.addActionListener(new OpenUrlAction());
         totalGUI.add(rickButton); // добавляем кнопку на поверхность
 
+        String path = "C:\\Users\\GachiBoy\\Documents\\GitHub\\red21\\red21\\images\\Errror.jpg";
+        File file = new File(path);
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JLabel label = new JLabel(new ImageIcon(image));
+        label.setLocation(200, 350); // расположение кнопки
+        label.setSize(200, 40); // размер кнопки
+        totalGUI.add(label);
 
         totalGUI.setOpaque(true);
+        totalGUI.setBackground(Color.DARK_GRAY);
         return totalGUI; // возвращаем внешний вид
     }
 
