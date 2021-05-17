@@ -5,16 +5,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TestAsServer {
-
+public int portHost;
     /**
      *
      * @param args
      * @throws InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    //public static void main(String[] args) throws InterruptedException {
 //  стартуем сервер на порту 3345
-
-        try (ServerSocket server= new ServerSocket(3345)){
+    public TestAsServer(String args){
+        try (ServerSocket server= new ServerSocket(portHost)){
 // становимся в ожидание подключения к сокету под именем - "client" на серверной стороне                                
             Socket client = server.accept();
 
@@ -79,7 +79,7 @@ public class TestAsServer {
             // для возможности поставить этот серверный сокет обратно в ожидание нового подключения
 
             System.out.println("Closing connections & channels - DONE.");
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }

@@ -178,6 +178,28 @@ public class MainWindow extends JFrame
                     smallField5.setText(numberStr1);
                 }
 
+                try(FileWriter writer = new FileWriter("saved\\playerOneSum.txt", false))
+                {
+                    // запись всей строки
+                    numberStr1 = smallField3.getText();
+                    writer.write(numberStr1);
+                    writer.flush();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+
+                try(FileWriter writer = new FileWriter("saved\\playerOneScore.txt", false))
+                {
+                    // запись всей строки
+                    numberStr1 = smallField5.getText();
+                    writer.write(numberStr1);
+                    writer.flush();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+
             }
 
         });
@@ -228,6 +250,28 @@ public class MainWindow extends JFrame
                     score2++;
                     numberStr2 = String.valueOf(score2);
                     smallField6.setText(numberStr2);
+                }
+
+                try(FileWriter writer = new FileWriter("saved\\playerTwoSum.txt", false))
+                {
+                    // запись всей строки
+                    numberStr2 = smallField4.getText();
+                    writer.write(numberStr2);
+                    writer.flush();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+
+                try(FileWriter writer = new FileWriter("saved\\playerTwoScore.txt", false))
+                {
+                    // запись всей строки
+                    numberStr2 = smallField6.getText();
+                    writer.write(numberStr2);
+                    writer.flush();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
                 }
 
             }

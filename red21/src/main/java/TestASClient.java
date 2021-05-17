@@ -7,16 +7,16 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class TestASClient {
-
+public int portClient;
     /**
      *
      * @param args
      * @throws InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
-
+    //public static void main(String[] args) throws InterruptedException {
+ public TestASClient(String args){
 // запускаем подключение сокета по известным координатам и нициализируем приём сообщений с консоли клиента      
-        try(Socket socket = new Socket("localhost", 3345);
+        try(Socket socket = new Socket("localhost", portClient);
             BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
             DataOutputStream oos = new DataOutputStream(socket.getOutputStream());
             DataInputStream ois = new DataInputStream(socket.getInputStream()); )
@@ -85,6 +85,8 @@ public class TestASClient {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-    }
+ }
 }
