@@ -4,16 +4,16 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class TestAsServer {
+public class ServerHost {
 public int portHost;
     /**
      *
-     * @param args
+     //* @param args
      * @throws InterruptedException
      */
     //public static void main(String[] args) throws InterruptedException {
 //  стартуем сервер на порту 3345
-    public TestAsServer(String args){
+    public ServerHost(){
         try (ServerSocket server= new ServerSocket(portHost)){
 // становимся в ожидание подключения к сокету под именем - "client" на серверной стороне                                
             Socket client = server.accept();

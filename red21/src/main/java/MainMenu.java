@@ -2,10 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URI;
 import java.net.URISyntaxException;
-
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class MainMenu extends JFrame {
 
@@ -48,6 +45,12 @@ public class MainMenu extends JFrame {
         online.setLocation(200, 100); // расположение кнопки
         online.setSize(200, 40); // размер кнопки
         online.setBackground(new Color(0x6DC911));
+        online.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new OnlineChoice();
+            }
+        });
 
 
         online.setActionCommand("Open");
@@ -57,7 +60,12 @@ public class MainMenu extends JFrame {
         offline.setLocation(200, 200); // расположение кнопки
         offline.setSize(200, 40); // размер кнопки
         offline.setBackground(new Color(0x157AA1));
-
+        offline.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new OfflineGame();
+            }
+        });
 
         offline.setActionCommand("Open");
         menushka.add(offline); // добавляем кнопку на поверхность

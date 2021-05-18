@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class TestASClient {
+public class Client {
 public int portClient;
     /**
      *
@@ -10,7 +10,7 @@ public int portClient;
      * @throws InterruptedException
      */
     //public static void main(String[] args) throws InterruptedException {
- public TestASClient(){
+ public Client(){
 
      try (FileReader reader = new FileReader("saved\\playerTwoHostPort.txt")) {
          // читаем посимвольно

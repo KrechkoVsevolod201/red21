@@ -1,19 +1,16 @@
 import javax.swing.*;
-import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class ClientMenu extends JFrame {
+public class HostPortMenu extends JFrame{
     JTextField port;
-    Font font = new Font("Serif", Font.BOLD, 35);
     private String portStr;
-    public int xPort;
-    public ClientMenu()
+    Font font = new Font("Serif", Font.BOLD, 35);
+    public HostPortMenu()
     {
         super("21");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -22,14 +19,14 @@ public class ClientMenu extends JFrame {
         setSize(450, 250);
         setVisible(true);
         try {
-            setContentPane(panelClient()); // передаем как параметр в коструктор
+            setContentPane(panelHost()); // передаем как параметр в коструктор
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         setVisible(true); //  форма будет видимой
     }
 
-    public JPanel panelClient() throws URISyntaxException  {
+    public JPanel panelHost() throws URISyntaxException  {
         // We create a bottom JPanel to place everything on.
         // сначала создаётся "панель", на которой и размещаюся
         // остальные компоненты
@@ -46,12 +43,13 @@ public class ClientMenu extends JFrame {
         port.setFont(font);
         port.setDocument
                 (new JTextFieldLimit(4));
+
         port.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 portStr = port.getText();
 
-                try(FileWriter writer = new FileWriter("saved\\playerTwoHostPort.txt", false))
+                try(FileWriter writer = new FileWriter("saved\\playerOneHostPort.txt", false))
                 {
                     // запись всей строки
                     writer.write(portStr);
@@ -61,7 +59,7 @@ public class ClientMenu extends JFrame {
                     System.out.println(ex.getMessage());
                 }
 
-                new TestASClient();
+                new ServerHost();
 
             }
         });
@@ -74,7 +72,10 @@ public class ClientMenu extends JFrame {
 
 
     }
+    /*
     public static void main(String[] args) {
-        new ClientMenu();
+        new HostMenu();
     }
+
+     */
 }

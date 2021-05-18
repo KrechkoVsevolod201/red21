@@ -10,7 +10,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Random;
 
-public class MainWindow extends JFrame
+public class OfflineGame extends JFrame
 {
     // Текстовые поля
     JTextField smallField1, smallField2, smallField3, smallField4, smallField5, smallField6;
@@ -20,7 +20,7 @@ public class MainWindow extends JFrame
     Font font = new Font("Serif", Font.BOLD, 35);
     public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
     public String numberStr1, numberStr2;
-    public MainWindow()
+    public OfflineGame()
     {
         super("21");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -333,8 +333,10 @@ public class MainWindow extends JFrame
             } catch (IOException e) { /* TODO: error handling */ }
         } else { /* TODO: error handling */ }
     }
-
+/*
     public static void main(String[] args) {
         new MainWindow();
     }
+
+ */
 }
