@@ -234,13 +234,6 @@ public class ClientOnlineGame extends JFrame{
         return totalGUI; // возвращаем внешний вид
     }
 
-    private static void open(URI uri) {
-        if (Desktop.isDesktopSupported()) {
-            try {
-                Desktop.getDesktop().browse(uri);
-            } catch (IOException e) { /* TODO: error handling */ }
-        } else { /* TODO: error handling */ }
-    }
 /*
     public static void main(String[] args) {
         new MainWindow();

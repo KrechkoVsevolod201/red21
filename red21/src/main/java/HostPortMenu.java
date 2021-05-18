@@ -59,7 +59,7 @@ public class HostPortMenu extends JFrame{
                     System.out.println(ex.getMessage());
                 }
 
-                new ServerHost();
+               // new ServerHost();
                 new HostOnlineGame();
                 HostPortMenu.super.setVisible(false);
 
