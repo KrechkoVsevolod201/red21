@@ -1,10 +1,18 @@
 import javax.swing.*;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class ClientMenu extends JFrame {
     JTextField port;
     Font font = new Font("Serif", Font.BOLD, 35);
+    private String portStr;
+    public int xPort;
     public ClientMenu()
     {
         super("21");
@@ -34,10 +42,30 @@ public class ClientMenu extends JFrame {
         port.setLocation(100, 50); /* надпись синего цвета*/
         port.setSize(150, 60); // размер области надписи
 
-        //port.setHorizontalAlignment(JTextField.CENTER);
+        port.setHorizontalAlignment(JTextField.CENTER);
         port.setFont(font);
         port.setDocument
                 (new JTextFieldLimit(4));
+        port.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                portStr = port.getText();
+
+                try(FileWriter writer = new FileWriter("saved\\playerTwoHostPort.txt", false))
+                {
+                    // запись всей строки
+                    writer.write(portStr);
+                    writer.flush();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+
+                new TestASClient();
+
+            }
+        });
+
         portMenu.add(port);
 
         portMenu.setOpaque(true);

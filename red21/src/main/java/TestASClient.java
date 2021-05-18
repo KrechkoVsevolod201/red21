@@ -1,8 +1,4 @@
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -10,11 +6,26 @@ public class TestASClient {
 public int portClient;
     /**
      *
-     * @param args
+     // * @param args
      * @throws InterruptedException
      */
     //public static void main(String[] args) throws InterruptedException {
- public TestASClient(String args){
+ public TestASClient(){
+
+     try (FileReader reader = new FileReader("saved\\playerTwoHostPort.txt")) {
+         // читаем посимвольно
+         int c1;
+         while ((c1 = reader.read()) != -1) {
+             portClient = Character.getNumericValue(c1);
+             System.out.print((char) c1);
+         }
+     }
+
+     catch(IOException exept){
+
+         System.out.println(exept.getMessage());
+     }
+
 // запускаем подключение сокета по известным координатам и нициализируем приём сообщений с консоли клиента      
         try(Socket socket = new Socket("localhost", portClient);
             BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
@@ -77,7 +88,7 @@ public int portClient;
                 }
             }
 // на выходе из цикла общения закрываем свои ресурсы
-            System.out.println("Closing connections & channels on clentSide - DONE.");
+            System.out.println("Closing connections & channels on clientSide - DONE.");
 
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
