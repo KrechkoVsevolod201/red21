@@ -1,3 +1,7 @@
+package online;
+
+import instruments.JTextFieldLimit;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -59,7 +63,7 @@ public class HostPortMenu extends JFrame{
                     System.out.println(ex.getMessage());
                 }
 
-               // new ServerHost();
+               // new online.server.ServerHost();
                 new HostOnlineGame();
                 HostPortMenu.super.setVisible(false);
 

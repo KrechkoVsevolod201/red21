@@ -1,3 +1,5 @@
+package online.server;
+
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -33,9 +35,9 @@ public int portClient;
             DataInputStream ois = new DataInputStream(socket.getInputStream()); )
         {
 
-            System.out.println("Client connected to socket.");
+            System.out.println("online.server.Client connected to socket.");
             System.out.println();
-            System.out.println("Client writing channel = oos & reading channel = ois initialized.");
+            System.out.println("online.server.Client writing channel = oos & reading channel = ois initialized.");
 
 // проверяем живой ли канал и работаем если живой           
             while(!socket.isOutputShutdown()){
@@ -44,7 +46,7 @@ public int portClient;
                 if(br.ready()){
 
 // данные появились - работаем                      
-                    System.out.println("Client start writing in channel...");
+                    System.out.println("online.server.Client start writing in channel...");
                     Thread.sleep(1000);
                     String clientCommand = br.readLine();
 
@@ -59,7 +61,7 @@ public int portClient;
                     if(clientCommand.equalsIgnoreCase("quit")){
 
 // если условие выхода достигнуто разъединяемся             
-                        System.out.println("Client kill connections");
+                        System.out.println("online.server.Client kill connections");
                         Thread.sleep(2000);
 
 // смотрим что нам ответил сервер на последок перед закрытием ресурсов          
@@ -74,7 +76,7 @@ public int portClient;
                     }
 
 // если условие разъединения не достигнуто продолжаем работу            
-                    System.out.println("Client sent message & start waiting for data from server...");
+                    System.out.println("online.server.Client sent message & start waiting for data from server...");
                     Thread.sleep(2000);
 
 // проверяем, что нам ответит сервер на сообщение(за предоставленное ему время в паузе он должен был успеть ответить)           

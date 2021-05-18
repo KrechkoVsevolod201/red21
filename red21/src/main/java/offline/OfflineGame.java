@@ -1,4 +1,4 @@
-// Использование текстовых полей JTextField
+package offline;// Использование текстовых полей JTextField
 import javax.swing.*;
 
 import java.awt.*;

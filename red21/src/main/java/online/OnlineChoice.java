@@ -1,10 +1,10 @@
+package online;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URISyntaxException;
-
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class OnlineChoice extends JFrame{
 
@@ -85,7 +85,7 @@ public class OnlineChoice extends JFrame{
     }
     /*
     public static void main(String[] args) {
-        new OnlineChoice();
+        new online.OnlineChoice();
     }
 
      */

@@ -1,3 +1,7 @@
+package online;
+
+import instruments.JTextFieldLimit;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -59,7 +63,7 @@ public class ClientPortMenu extends JFrame {
                     System.out.println(ex.getMessage());
                 }
 
-                new Client();
+                //new online.server.Client();
                 new ClientOnlineGame();
                 ClientPortMenu.super.setVisible(false);
             }

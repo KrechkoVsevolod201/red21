@@ -1,3 +1,5 @@
+package online.server;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -47,7 +49,7 @@ public int portHost;
 
 // инициализация проверки условия продолжения работы с клиентом по этому сокету по кодовому слову       - quit  
                 if(entry.equalsIgnoreCase("quit")){
-                    System.out.println("Client initialize connections suicide ...");
+                    System.out.println("online.server.Client initialize connections suicide ...");
                     out.writeUTF("Server reply - "+entry + " - OK");
                     out.flush();
                     Thread.sleep(3000);
@@ -64,7 +66,7 @@ public int portHost;
             }
 
 // если условие выхода - верно выключаем соединения             
-            System.out.println("Client disconnected");
+            System.out.println("online.server.Client disconnected");
             System.out.println("Closing connections & channels.");
 
             // закрываем сначала каналы сокета !

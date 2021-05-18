@@ -1,3 +1,7 @@
+import instruments.Sound;
+import offline.OfflineGame;
+import online.OnlineChoice;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
