@@ -23,7 +23,7 @@ public class OfflineGame extends JFrame
     public OfflineGame()
     {
         super("21");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         // Определяем размер окна и выводим его на экран
         setSize(640, 850);

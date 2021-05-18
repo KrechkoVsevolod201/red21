@@ -14,7 +14,7 @@ public class ClientPortMenu extends JFrame {
     public ClientPortMenu()
     {
         super("21");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         // Определяем размер окна и выводим его на экран
         setSize(450, 250);
@@ -60,7 +60,7 @@ public class ClientPortMenu extends JFrame {
                 }
 
                 new Client();
-
+                ClientPortMenu.super.setVisible(false);
             }
         });
 

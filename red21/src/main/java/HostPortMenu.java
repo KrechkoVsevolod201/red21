@@ -60,6 +60,8 @@ public class HostPortMenu extends JFrame{
                 }
 
                 new ServerHost();
+                HostPortMenu.super.setVisible(false);
+
 
             }
         });

@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URISyntaxException;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
@@ -7,12 +9,12 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class OnlineChoice extends JFrame{
 
     private final JButton hostButton = new JButton("ХОСТ");
-    private final  JButton ClientButton = new JButton("КЛИЕНТ");
+    private final  JButton clientButton = new JButton("КЛИЕНТ");
 
     public OnlineChoice()
     {
         super("21");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         // Определяем размер окна и выводим его на экран
         setSize(375, 200);
@@ -45,19 +47,32 @@ public class OnlineChoice extends JFrame{
         hostButton.setLocation(50, 50); // расположение кнопки
         hostButton.setSize(100, 50); // размер кнопки
         hostButton.setBackground(new Color(0x6DC911));
-
+        hostButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new HostPortMenu();
+                OnlineChoice.super.setVisible(false);
+            }
+        });
 
         hostButton.setActionCommand("Open");
         menu.add(hostButton); // добавляем кнопку на поверхность
 
         // Создаём кнопку---------------
-        ClientButton.setLocation(200, 50); // расположение кнопки
-        ClientButton.setSize(100, 50); // размер кнопки
-        ClientButton.setBackground(new Color(0x157AA1));
+        clientButton.setLocation(200, 50); // расположение кнопки
+        clientButton.setSize(100, 50); // размер кнопки
+        clientButton.setBackground(new Color(0x157AA1));
+        clientButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ClientPortMenu();
+                OnlineChoice.super.setVisible(false);
 
+            }
+        });
 
-        ClientButton.setActionCommand("Open");
-        menu.add(ClientButton); // добавляем кнопку на поверхность
+        clientButton.setActionCommand("Open");
+        menu.add(clientButton); // добавляем кнопку на поверхность
 /*
         Image image = Toolkit.getDefaultToolkit().createImage("images/menuTheme.jpg");
         ImageIcon imageIcon = new ImageIcon(image);
