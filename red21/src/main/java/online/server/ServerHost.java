@@ -2,6 +2,7 @@ package online.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -10,13 +11,28 @@ public class ServerHost {
 public int portHost;
     /**
      *
-     //* @param args
+     * @param args
      * @throws InterruptedException
      */
     //public static void main(String[] args) throws InterruptedException {
 //  стартуем сервер на порту 3345
-    public ServerHost(){
-        try (ServerSocket server= new ServerSocket(portHost)){
+    public ServerHost(String args){
+
+        try (FileReader reader = new FileReader("saved\\playerTwoHostPort.txt")) {
+            // читаем посимвольно
+            int c1;
+            while ((c1 = reader.read()) != -1) {
+                portHost = Character.getNumericValue(c1);
+                System.out.print((char) c1);
+            }
+        }
+
+        catch(IOException exept){
+
+            System.out.println(exept.getMessage());
+        }
+
+        try (ServerSocket server = new ServerSocket(portHost)){
 // становимся в ожидание подключения к сокету под именем - "client" на серверной стороне                                
             Socket client = server.accept();
 
@@ -38,7 +54,7 @@ public int portHost;
 
                 System.out.println("Server reading from channel");
 
-// сервер ждёт в канале чтения (inputstream) получения данных клиента               
+// сервер ждёт в канале чтения (inputStream) получения данных клиента
                 String entry = in.readUTF();
 
 // после получения данных считывает их              

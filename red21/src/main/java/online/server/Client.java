@@ -8,11 +8,11 @@ public class Client {
 public int portClient;
     /**
      *
-     // * @param args
+     * @param args
      * @throws InterruptedException
      */
     //public static void main(String[] args) throws InterruptedException {
- public Client(){
+ public Client(String args){
 
      try (FileReader reader = new FileReader("saved\\playerTwoHostPort.txt")) {
          // читаем посимвольно
@@ -30,7 +30,7 @@ public int portClient;
 
 // запускаем подключение сокета по известным координатам и нициализируем приём сообщений с консоли клиента      
         try(Socket socket = new Socket("localhost", portClient);
-            BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             DataOutputStream oos = new DataOutputStream(socket.getOutputStream());
             DataInputStream ois = new DataInputStream(socket.getInputStream()); )
         {
