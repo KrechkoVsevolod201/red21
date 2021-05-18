@@ -63,7 +63,7 @@ public class ClientPortMenu extends JFrame {
                     System.out.println(ex.getMessage());
                 }
 
-                new online.server.Client(portStr);
+                //new online.server.Client(portStr);
                 new ClientOnlineGame();
                 ClientPortMenu.super.setVisible(false);
             }
