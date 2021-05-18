@@ -18,7 +18,7 @@ public class MainMenu extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         // Определяем размер окна и выводим его на экран
-        setSize(640, 850);
+        setSize(450, 350);
         setVisible(true);
         try {
             setContentPane(panel()); // передаем как параметр в коструктор
@@ -34,21 +34,44 @@ public class MainMenu extends JFrame {
         // остальные компоненты
         JPanel menushka = new JPanel(); // создаём "поверхность"
         menushka.setLayout(null);
-
+/*
+        JLabel label = new JLabel();
+        Image image = Toolkit.getDefaultToolkit().createImage("images/menuTheme.jpg");
+        ImageIcon imageIcon = new ImageIcon(image);
+        imageIcon.setImageObserver(label);
+        label.setIcon(imageIcon);
+        //label.setLocation(100, 100); // расположение кнопки
+        //label.setSize(1000, 1000); // размер кнопки
+        menushka.add(label);
+*/
         // Создаём кнопку---------------
-        online.setLocation(200, 400); // расположение кнопки
+        online.setLocation(200, 100); // расположение кнопки
         online.setSize(200, 40); // размер кнопки
-        online.setBackground(new Color(0xFF0000));
+        online.setBackground(new Color(0x6DC911));
 
 
         online.setActionCommand("Open");
         menushka.add(online); // добавляем кнопку на поверхность
 
+        // Создаём кнопку---------------
+        offline.setLocation(200, 200); // расположение кнопки
+        offline.setSize(200, 40); // размер кнопки
+        offline.setBackground(new Color(0x157AA1));
+
+
+        offline.setActionCommand("Open");
+        menushka.add(offline); // добавляем кнопку на поверхность
+/*
+        Image image = Toolkit.getDefaultToolkit().createImage("images/menuTheme.jpg");
+        ImageIcon imageIcon = new ImageIcon(image);
+*/
         menushka.setOpaque(true);
-        menushka.setBackground(Color.DARK_GRAY);
+        //menushka.setBackground(Color.DARK_GRAY);
         return menushka; // возвращаем внешний вид
 
 
     }
-
+    public static void main(String[] args) {
+        new MainMenu();
+    }
 }
