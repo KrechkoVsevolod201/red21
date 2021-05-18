@@ -13,7 +13,7 @@ public class HostPortMenu extends JFrame{
     public HostPortMenu()
     {
         super("21");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         // Определяем размер окна и выводим его на экран
         setSize(450, 250);
@@ -60,6 +60,7 @@ public class HostPortMenu extends JFrame{
                 }
 
                 new ServerHost();
+                new HostOnlineGame();
                 HostPortMenu.super.setVisible(false);
 
 

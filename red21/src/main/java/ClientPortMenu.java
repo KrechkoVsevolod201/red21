@@ -60,6 +60,7 @@ public class ClientPortMenu extends JFrame {
                 }
 
                 new Client();
+                new ClientOnlineGame();
                 ClientPortMenu.super.setVisible(false);
             }
         });
