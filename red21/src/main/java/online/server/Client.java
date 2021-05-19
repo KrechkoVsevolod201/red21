@@ -15,7 +15,7 @@ public int portClient;
  public Client(int args){
 
 // запускаем подключение сокета по известным координатам и нициализируем приём сообщений с консоли клиента      
-        try(Socket socket = new Socket("localhost", args);
+        try(Socket socket = new Socket("127.0.0.1", args);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
             DataInputStream ois = new DataInputStream(socket.getInputStream()); )
