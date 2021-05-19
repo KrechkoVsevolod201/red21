@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerHost {
+    int hostPort;
     public ServerHost(int hostPort) throws IOException {
         ServerSocket serverSocket = new ServerSocket(hostPort);
         serverSocket.accept();

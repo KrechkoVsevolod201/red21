@@ -12,24 +12,10 @@ public int portClient;
      * @throws InterruptedException
      */
     //public static void main(String[] args) throws InterruptedException {
- public Client(String args){
-
-     try (FileReader reader = new FileReader("saved\\playerTwoHostPort.txt")) {
-         // читаем посимвольно
-         int c1;
-         while ((c1 = reader.read()) != -1) {
-             portClient = Character.getNumericValue(c1);
-             System.out.print((char) c1);
-         }
-     }
-
-     catch(IOException exept){
-
-         System.out.println(exept.getMessage());
-     }
+ public Client(int args){
 
 // запускаем подключение сокета по известным координатам и нициализируем приём сообщений с консоли клиента      
-        try(Socket socket = new Socket("localhost", portClient);
+        try(Socket socket = new Socket("localhost", args);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             DataOutputStream oos = new DataOutputStream(socket.getOutputStream());
             DataInputStream ois = new DataInputStream(socket.getInputStream()); )

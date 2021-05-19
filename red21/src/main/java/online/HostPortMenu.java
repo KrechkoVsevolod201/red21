@@ -64,8 +64,13 @@ public class HostPortMenu extends JFrame{
                 }
 
                 new HostOnlineGame();
-                //new online.server.ServerHost(portStr);
-                //new online.server.Client(portStr);
+                int number = Integer.parseInt(portStr);
+                try {
+                    new online.server.ServerHost(number);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                new online.server.Client(number);
                 HostPortMenu.super.setVisible(false);
 
 
