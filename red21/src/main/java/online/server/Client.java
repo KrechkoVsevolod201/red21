@@ -17,13 +17,13 @@ public int portClient;
 // запускаем подключение сокета по известным координатам и нициализируем приём сообщений с консоли клиента      
         try(Socket socket = new Socket("localhost", args);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            DataOutputStream oos = new DataOutputStream(socket.getOutputStream());
+            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
             DataInputStream ois = new DataInputStream(socket.getInputStream()); )
         {
 
             System.out.println("online.server.Client connected to socket.");
             System.out.println();
-            System.out.println("online.server.Client writing channel = oos & reading channel = ois initialized.");
+            System.out.println("online.server.Client writing channel = dos & reading channel = ois initialized.");
 
 // проверяем живой ли канал и работаем если живой           
             while(!socket.isOutputShutdown()){
@@ -37,8 +37,8 @@ public int portClient;
                     String clientCommand = br.readLine();
 
 // пишем данные с консоли в канал сокета для сервера            
-                    oos.writeUTF(clientCommand);
-                    oos.flush();
+                    dos.writeUTF(clientCommand);
+                    dos.flush();
                     System.out.println("Clien sent message " + clientCommand + " to server.");
                     Thread.sleep(1000);
 // ждём чтобы сервер успел прочесть сообщение из сокета и ответить      
