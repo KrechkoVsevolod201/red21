@@ -1,12 +1,14 @@
 package online.server;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerHost {
-
+public String massage;
+public int x1;
     /**
      *
      * @param args
@@ -34,6 +36,20 @@ public class ServerHost {
 
 // начинаем диалог с подключенным клиентом в цикле, пока сокет не закрыт
             while(!client.isClosed()){
+
+                try(FileReader reader = new FileReader("saved\\playerOneThrow.txt"))
+                {
+                    // читаем посимвольно
+                    int c;
+                    while((c=reader.read())!=-1){
+                        x1 = Character.getNumericValue(c);
+                        System.out.print((char)c);
+                    }
+                }
+                catch(IOException ex){
+
+                    System.out.println(ex.getMessage());
+                }
 
                 System.out.println("Server reading from channel");
 
