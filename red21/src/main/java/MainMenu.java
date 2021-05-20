@@ -52,6 +52,7 @@ public class MainMenu extends JFrame {
         online.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Sound.playSound("sounds\\boyNextDoor.wav");
                 new OnlineChoice();
             }
         });
