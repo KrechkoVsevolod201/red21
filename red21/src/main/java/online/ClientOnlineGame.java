@@ -1,5 +1,7 @@
 package online;
 
+import serverTest.ClientTest;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Random;
 
+import static java.lang.Thread.sleep;
+
 public class ClientOnlineGame extends JFrame{
     // Текстовые поля
     JTextField smallField1, smallField2, smallField3, smallField4, smallField5, smallField6;
@@ -19,7 +23,7 @@ public class ClientOnlineGame extends JFrame{
     public final JButton throwButton2 = new JButton("Бросить кубик p2");
     public final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
-    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
+    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, port = 0;
     public String numberStr1, numberStr2;
     public ClientOnlineGame()
     {
@@ -35,6 +39,25 @@ public class ClientOnlineGame extends JFrame{
             e.printStackTrace();
         }
         setVisible(true); //  форма будет видимой
+
+        try (FileReader fr = new FileReader("saved\\playerTwoHostPort.txt")) {
+            // читаем посимвольно
+            BufferedReader reader = new BufferedReader(fr);
+            String line = reader.readLine();
+            port = Integer.parseInt(line);;
+        } catch (IOException ex) {
+
+            System.out.println(ex.getMessage());
+        }
+
+        for (;;) {
+            try {
+                new ClientTest(port);
+                sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

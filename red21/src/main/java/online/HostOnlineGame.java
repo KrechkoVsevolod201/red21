@@ -1,9 +1,12 @@
 package online;
 
+import serverTest.ClientTest;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,6 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Random;
 
+import static java.lang.Thread.sleep;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class HostOnlineGame extends JFrame{
@@ -20,7 +24,7 @@ public class HostOnlineGame extends JFrame{
     public final JButton throwButton2 = new JButton("Бросить кубик p2");
     public final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
-    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
+    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, port = 0;
     public String numberStr1, numberStr2;
     public HostOnlineGame()
     {
@@ -36,6 +40,26 @@ public class HostOnlineGame extends JFrame{
             e.printStackTrace();
         }
         setVisible(true); //  форма будет видимой
+
+        try (FileReader fr = new FileReader("saved\\playerOneHostPort.txt")) {
+            // читаем посимвольно
+            BufferedReader reader = new BufferedReader(fr);
+            String line = reader.readLine();
+            port = Integer.parseInt(line);;
+        } catch (IOException ex) {
+
+            System.out.println(ex.getMessage());
+        }
+
+        for (;;) {
+            try {
+                new ClientTest(port);
+                sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 
