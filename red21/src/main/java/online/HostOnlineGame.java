@@ -52,14 +52,6 @@ public class HostOnlineGame extends JFrame{
             System.out.println(ex.getMessage());
         }
 
-        for (;;) {
-            try {
-                new ServerTest(port);
-                sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
 
     }
 
@@ -166,6 +158,7 @@ public class HostOnlineGame extends JFrame{
         // создаём объект-обработчик события
         throwButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                new ServerTest(port);
                 number1 = new Random().nextInt(6);
                 number1++;
                 numberStr1 = String.valueOf(number1);

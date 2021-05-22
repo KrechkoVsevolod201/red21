@@ -49,15 +49,6 @@ public class ClientOnlineGame extends JFrame{
 
             System.out.println(ex.getMessage());
         }
-
-        for (;;) {
-            try {
-                new ClientTest(port);
-                sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 
@@ -164,6 +155,7 @@ public class ClientOnlineGame extends JFrame{
         // создаём объект-обработчик события
         throwButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                new ClientTest(port);
                 number2 = new Random().nextInt(6);
                 number2++;
                 numberStr2 = String.valueOf(number2);
