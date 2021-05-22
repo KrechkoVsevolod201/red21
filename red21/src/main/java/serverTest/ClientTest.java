@@ -27,7 +27,7 @@ public class ClientTest {
                 //  работать дальше и предложить клиенту что то ввести
                 // если нет - вылетит исключение
                 String word = null; //= reader.readLine(); // ждём пока клиент что-нибудь
-                try (FileReader fr = new FileReader("saved\\playerOneSum.txt")) {
+                try (FileReader fr = new FileReader("saved\\playerTwoSum.txt")) {
                     // читаем посимвольно
                     BufferedReader reader = new BufferedReader(fr);
                     String line = reader.readLine();

@@ -27,7 +27,7 @@ public class ServerTest {
                         out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
                         String word = in.readLine(); // ждём пока клиент что-нибудь нам напишет
-                        try (FileWriter writer = new FileWriter("saved\\playerOneSum.txt", false)) {
+                        try (FileWriter writer = new FileWriter("saved\\playerTwoSum.txt", false)) {
                             // запись всей строки
                             //numberStr2 = smallField4.getText();
                             writer.write(word);
