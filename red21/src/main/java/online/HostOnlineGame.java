@@ -220,6 +220,15 @@ public class HostOnlineGame extends JFrame{
                     System.out.println(ex.getMessage());
                 }
                 new ServerTest(port);
+                try (FileReader fr = new FileReader("saved\\playerTwoSum.txt")) {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    smallField4.setText(line);
+                } catch (IOException ex) {
+
+                    System.out.println(ex.getMessage());
+                }
             }
 
         });
