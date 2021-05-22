@@ -158,7 +158,7 @@ public class HostOnlineGame extends JFrame{
         // создаём объект-обработчик события
         throwButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ServerTest(port);
+
                 number1 = new Random().nextInt(6);
                 number1++;
                 numberStr1 = String.valueOf(number1);
@@ -219,7 +219,7 @@ public class HostOnlineGame extends JFrame{
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
-
+                new ServerTest(port);
             }
 
         });
