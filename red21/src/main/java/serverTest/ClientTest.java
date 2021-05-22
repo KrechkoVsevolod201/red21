@@ -14,7 +14,7 @@ public class ClientTest {
         try {
             try {
                 // адрес - локальный хост, порт - 4004, такой же как у сервера
-                clientSocket = new Socket("localhost", args); // этой строкой мы запрашиваем
+                clientSocket = new Socket("192.168.1.56", args); // этой строкой мы запрашиваем
                 //  у сервера доступ на соединение
                 reader = new BufferedReader(new InputStreamReader(System.in));
                 // читать соообщения с сервера
