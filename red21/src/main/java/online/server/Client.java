@@ -36,7 +36,7 @@ public int portClient;
                     Thread.sleep(1000);
                     String clientCommand = br.readLine();
 
-                    try(FileWriter writer = new FileWriter("saved\\playerTwoSum.txt", false))
+                    try(FileWriter writer = new FileWriter("saved\\playerOneSum.txt", false))
                     {
                         // запись всей строки
                         //numberStr2 = smallField4.getText();

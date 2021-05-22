@@ -32,7 +32,7 @@ public int x1;
             System.out.println("DataInputStream created");
 
 // начинаем диалог с подключенным клиентом в цикле, пока сокет не закрыт
-            while(client.isClosed()){
+            while(!client.isClosed()){
 
                 System.out.println("Server reading from channel");
 
