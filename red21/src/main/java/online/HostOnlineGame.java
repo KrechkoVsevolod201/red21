@@ -1,6 +1,7 @@
 package online;
 
 import serverTest.ClientTest;
+import serverTest.ServerTest;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +54,7 @@ public class HostOnlineGame extends JFrame{
 
         for (;;) {
             try {
-                new ClientTest(port);
+                new ServerTest(port);
                 sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
