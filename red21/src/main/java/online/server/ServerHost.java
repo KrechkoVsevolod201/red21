@@ -5,6 +5,7 @@ import java.net.Socket;
 
 public class ServerHost {
 public String massage1;
+    private static Socket client; //сокет для общения
 public int x1;
     /**
      *
@@ -15,13 +16,8 @@ public int x1;
 //  стартуем сервер на порту args
 
         try (ServerSocket server= new ServerSocket(args)){
-// становимся в ожидание подключения к сокету под именем - "client" на серверной стороне
-            Socket client = server.accept();
 
-// после хэндшейкинга сервер ассоциирует подключающегося клиента с этим сокетом-соединением
-            System.out.print("Connection accepted.");
-
-// инициируем каналы для  общения в сокете, для сервера
+            // инициируем каналы для  общения в сокете, для сервера
 
 // канал записи в сокет
             DataOutputStream dout = new DataOutputStream(client.getOutputStream());
@@ -30,54 +26,63 @@ public int x1;
             // канал чтения из сокета
             DataInputStream in = new DataInputStream(client.getInputStream());
             System.out.println("DataInputStream created");
+        try {
+
+            while (true) {
+// становимся в ожидание подключения к сокету под именем - "client" на серверной стороне
+                Socket client = server.accept();
+
+// после хэндшейкинга сервер ассоциирует подключающегося клиента с этим сокетом-соединением
+                System.out.print("Connection accepted.");
+
 
 // начинаем диалог с подключенным клиентом в цикле, пока сокет не закрыт
-            while(!client.isClosed()){
+                while (!client.isClosed()) {
 
-                System.out.println("Server reading from channel");
+                    System.out.println("Server reading from channel");
 
 // сервер ждёт в канале чтения (inputStream) получения данных клиента
-                String entry = in.readUTF();
+                    String entry = in.readUTF();
 
 // после получения данных считывает их
-                System.out.println("READ from client message - "+entry);
+                    System.out.println("READ from client message - " + entry);
 
 // и выводит в консоль
-                System.out.println("Server try writing to channel");
+                    System.out.println("Server try writing to channel");
 
 // инициализация проверки условия продолжения работы с клиентом по этому сокету по кодовому слову       - quit
-                if(entry.equalsIgnoreCase("quit")){
-                    System.out.println("Client initialize connections suicide ...");
-                    dout.writeUTF("Server reply - "+entry + " - OK");
-                    dout.flush();
-                    Thread.sleep(3000);
-                    break;
-                }
+                    if (entry.equalsIgnoreCase("quit")) {
+                        System.out.println("Client initialize connections suicide ...");
+                        dout.writeUTF("Server reply - " + entry + " - OK");
+                        dout.flush();
+                        Thread.sleep(3000);
+                        break;
+                    }
 
 // если условие окончания работы не верно - продолжаем работу - отправляем эхо-ответ  обратно клиенту
-                try(FileReader fr = new FileReader("saved\\playerOneSum.txt"))
-                {
-                    // читаем посимвольно
-                    BufferedReader reader = new BufferedReader(fr);
-                    String line = reader.readLine();
-                    while (line != null) {
-                        System.out.println(line);
-                        // считываем остальные строки в цикле
-                        line = reader.readLine();
-                        massage1 = line;
-                    }
-                }
-                catch(IOException ex){
+                    try (FileReader fr = new FileReader("saved\\playerOneSum.txt")) {
+                        // читаем посимвольно
+                        BufferedReader reader = new BufferedReader(fr);
+                        String line = reader.readLine();
+                        while (line != null) {
+                            System.out.println(line);
+                            // считываем остальные строки в цикле
+                            line = reader.readLine();
+                            massage1 = line;
+                        }
+                    } catch (IOException ex) {
 
-                    System.out.println(ex.getMessage());
-                }
-                dout.writeUTF(massage1);
-                System.out.println("Server Wrote message to client.");
+                        System.out.println(ex.getMessage());
+                    }
+                    dout.writeUTF(massage1);
+                    System.out.println("Server Wrote message to client.");
 
 // освобождаем буфер сетевых сообщений (по умолчанию сообщение не сразу отправляется в сеть, а сначала накапливается в специальном буфере сообщений, размер которого определяется конкретными настройками в системе, а метод  - flush() отправляет сообщение не дожидаясь наполнения буфера согласно настройкам системы
-                dout.flush();
+                    dout.flush();
 
+                }
             }
+        }finally {
 
 // если условие выхода - верно выключаем соединения
             System.out.println("Client disconnected");
@@ -88,13 +93,14 @@ public int x1;
             dout.close();
 
             // потом закрываем сам сокет общения на стороне сервера!
-            client.close();
-
+            server.close();
+            System.out.println("Closing connections & channels - DONE.");
+        }
             // потом закрываем сокет сервера который создаёт сокеты общения
             // хотя при многопоточном применении его закрывать не нужно
             // для возможности поставить этот серверный сокет обратно в ожидание нового подключения
 
-            System.out.println("Closing connections & channels - DONE.");
+
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
