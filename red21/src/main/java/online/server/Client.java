@@ -26,7 +26,7 @@ public int portClient;
             System.out.println("online.server.Client writing channel = dos & reading channel = ois initialized.");
 
 // проверяем живой ли канал и работаем если живой           
-            while(!socket.isOutputShutdown()){
+            while(socket.isOutputShutdown()){
 
 // ждём консоли клиента на предмет появления в ней данных                   
                 if(br.ready()){
