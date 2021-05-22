@@ -3,6 +3,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -161,7 +162,7 @@ public class OfflineGame extends JFrame
                     int c;
                     while((c=reader.read())!=-1){
                         x1 = Character.getNumericValue(c);
-                        System.out.print((char)c);
+                        System.out.print((char)c + "\n");
                     }
                 }
                 catch(IOException ex){
@@ -188,6 +189,7 @@ public class OfflineGame extends JFrame
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+
 
                 try(FileWriter writer = new FileWriter("saved\\playerOneScore.txt", false))
                 {

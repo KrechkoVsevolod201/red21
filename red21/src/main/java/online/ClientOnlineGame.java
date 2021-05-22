@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -197,6 +198,20 @@ public class ClientOnlineGame extends JFrame{
                 }
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
+                }
+
+                try(FileReader fr = new FileReader("saved\\playerOneSum.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    while (line != null) {
+                        System.out.println(line);
+                        // считываем остальные строки в цикле
+                        line = reader.readLine();
+                    }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
 
             }

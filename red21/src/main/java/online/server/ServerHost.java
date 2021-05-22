@@ -1,13 +1,10 @@
 package online.server;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerHost {
-public String massage;
+public String massage1;
 public int x1;
     /**
      *
@@ -27,29 +24,15 @@ public int x1;
 // инициируем каналы для  общения в сокете, для сервера
 
 // канал записи в сокет
-            DataOutputStream out = new DataOutputStream(client.getOutputStream());
+            DataOutputStream dout = new DataOutputStream(client.getOutputStream());
             System.out.println("DataOutputStream  created");
-
+            //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             // канал чтения из сокета
             DataInputStream in = new DataInputStream(client.getInputStream());
             System.out.println("DataInputStream created");
 
 // начинаем диалог с подключенным клиентом в цикле, пока сокет не закрыт
             while(!client.isClosed()){
-
-                try(FileReader reader = new FileReader("saved\\playerOneThrow.txt"))
-                {
-                    // читаем посимвольно
-                    int c;
-                    while((c=reader.read())!=-1){
-                        x1 = Character.getNumericValue(c);
-                        System.out.print((char)c);
-                    }
-                }
-                catch(IOException ex){
-
-                    System.out.println(ex.getMessage());
-                }
 
                 System.out.println("Server reading from channel");
 
@@ -65,18 +48,34 @@ public int x1;
 // инициализация проверки условия продолжения работы с клиентом по этому сокету по кодовому слову       - quit
                 if(entry.equalsIgnoreCase("quit")){
                     System.out.println("Client initialize connections suicide ...");
-                    out.writeUTF("Server reply - "+entry + " - OK");
-                    out.flush();
+                    dout.writeUTF("Server reply - "+entry + " - OK");
+                    dout.flush();
                     Thread.sleep(3000);
                     break;
                 }
 
 // если условие окончания работы не верно - продолжаем работу - отправляем эхо-ответ  обратно клиенту
-                out.writeUTF("Server reply - "+entry + " - OK");
+                try(FileReader fr = new FileReader("saved\\playerOneSum.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    while (line != null) {
+                        System.out.println(line);
+                        // считываем остальные строки в цикле
+                        line = reader.readLine();
+                        massage1 = line;
+                    }
+                }
+                catch(IOException ex){
+
+                    System.out.println(ex.getMessage());
+                }
+                dout.writeUTF(massage1);
                 System.out.println("Server Wrote message to client.");
 
 // освобождаем буфер сетевых сообщений (по умолчанию сообщение не сразу отправляется в сеть, а сначала накапливается в специальном буфере сообщений, размер которого определяется конкретными настройками в системе, а метод  - flush() отправляет сообщение не дожидаясь наполнения буфера согласно настройкам системы
-                out.flush();
+                dout.flush();
 
             }
 
@@ -86,7 +85,7 @@ public int x1;
 
             // закрываем сначала каналы сокета !
             in.close();
-            out.close();
+            dout.close();
 
             // потом закрываем сам сокет общения на стороне сервера!
             client.close();
