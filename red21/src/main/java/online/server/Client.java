@@ -36,6 +36,17 @@ public int portClient;
                     Thread.sleep(1000);
                     String clientCommand = br.readLine();
 
+                    try(FileWriter writer = new FileWriter("saved\\playerTwoSum.txt", false))
+                    {
+                        // запись всей строки
+                        //numberStr2 = smallField4.getText();
+                        writer.write(clientCommand);
+                        writer.flush();
+                    }
+                    catch(IOException ex){
+                        System.out.println(ex.getMessage());
+                    }
+
 // пишем данные с консоли в канал сокета для сервера            
                     dos.writeUTF(clientCommand);
                     dos.flush();
