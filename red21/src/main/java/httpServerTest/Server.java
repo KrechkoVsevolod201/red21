@@ -27,8 +27,8 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        var port = Integer.parseInt(args[0]);
-        var directory = args[1];
+        var port = 1234; //= Integer.parseInt(args[0]);
+        var directory = "saved"; //= args[1];
         new Server(port, directory).start();
     }
 }

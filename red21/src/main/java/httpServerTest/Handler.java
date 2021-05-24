@@ -9,7 +9,10 @@ import java.util.Scanner;
 
 public class Handler extends Thread {
 
-    private static final Map<String, String> CONTENT_TYPES = new HashMap<>() {{
+    private static final Map<String, String> CONTENT_TYPES = new HashMap<>() {
+        private static final long serialVersionUID = 111313727582495134L;
+
+        {
         put("jpg", "image/jpeg");
         put("html", "text/html");
         put("json", "application/json");
