@@ -14,7 +14,7 @@ public class Server {
         this.directory = directory;
     }
 
-    void start() {
+    public void start() {
         try (var server = new ServerSocket(this.port)) {
             while (true) {
                 var socket = server.accept();

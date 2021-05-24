@@ -64,6 +64,8 @@ public class Handler extends Thread {
         return extensionStart == -1 ? "" : name.substring(extensionStart + 1);
     }
 
+
+
     private void sendHeader(OutputStream output, int statusCode, String statusText, String type, long lenght) {
         var ps = new PrintStream(output);
         ps.printf("HTTP/1.1 %s %s%n", statusCode, statusText);

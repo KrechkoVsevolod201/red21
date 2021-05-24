@@ -1,5 +1,6 @@
 package online;
 
+import httpServerTest.Server;
 import serverTest.ClientTest;
 import serverTest.ServerTest;
 
@@ -231,6 +232,9 @@ public class HostOnlineGame extends JFrame{
                     System.out.println(ex.getMessage());
                 }
                  */
+
+                new Server(port, "saved").start();
+
             }
 
         });

@@ -1,5 +1,6 @@
 package online;
 
+import httpServerTest.Server;
 import instruments.JTextFieldLimit;
 
 import javax.swing.*;
@@ -65,6 +66,7 @@ public class ClientPortMenu extends JFrame {
                 int number = Integer.parseInt(portStr);
                 //new online.server.Client(number);
                 new ClientOnlineGame();
+                //new Server(number, "saved").start();
                 ClientPortMenu.super.setVisible(false);
             }
         });
