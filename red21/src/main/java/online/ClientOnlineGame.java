@@ -228,7 +228,7 @@ public class ClientOnlineGame extends JFrame{
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-                new ClientTest(port);
+                //new ClientTest(port);
 
             }
 

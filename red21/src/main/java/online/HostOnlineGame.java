@@ -219,6 +219,7 @@ public class HostOnlineGame extends JFrame{
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                /*
                 new ServerTest(port);
                 try (FileReader fr = new FileReader("saved\\playerTwoSum.txt")) {
                     // читаем посимвольно
@@ -229,6 +230,7 @@ public class HostOnlineGame extends JFrame{
 
                     System.out.println(ex.getMessage());
                 }
+                 */
             }
 
         });
