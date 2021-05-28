@@ -154,7 +154,7 @@ public class ClientOnlineGame extends JFrame{
         // создаём объект-обработчик события
         throwButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ClientTest(port);
+                //new ClientTest(port);
                 number2 = new Random().nextInt(6);
                 number2++;
                 numberStr2 = String.valueOf(number2);
@@ -229,12 +229,12 @@ public class ClientOnlineGame extends JFrame{
                 }
 
                 try {
-                    URL url = new URL("http://localhost/fls/1.txt");
+                    URL url = new URL("http://127.0.0.1:1234/playerOneSum.txt");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                     BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
 
-                    File f1 = new File("1.txt");
+                    File f1 = new File("saved\\1.txt");
                     FileOutputStream fw = new FileOutputStream(f1);
 
                     byte[] b = new byte[1024];
