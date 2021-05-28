@@ -50,7 +50,7 @@ public class OnlineChoice extends JFrame{
         hostButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new HostPortMenu();
+                new HostOnlineGame();
                 OnlineChoice.super.setVisible(false);
             }
         });
@@ -65,7 +65,7 @@ public class OnlineChoice extends JFrame{
         clientButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ClientPortMenu();
+                new ClientOnlineGame();
                 OnlineChoice.super.setVisible(false);
 
             }

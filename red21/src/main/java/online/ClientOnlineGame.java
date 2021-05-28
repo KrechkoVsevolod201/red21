@@ -6,12 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Random;
 
 import static java.lang.Thread.sleep;
@@ -228,6 +227,26 @@ public class ClientOnlineGame extends JFrame{
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
+
+                try {
+                    URL url = new URL("http://localhost/fls/1.txt");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+                    File f1 = new File("1.txt");
+                    FileOutputStream fw = new FileOutputStream(f1);
+
+                    byte[] b = new byte[1024];
+                    int count = 0;
+
+                    while ((count=bis.read(b)) != -1)
+                        fw.write(b,0,count);
+
+                    fw.close();
+                } catch (IOException ex) {
+                }
+
                 //new ClientTest(port);
 
             }

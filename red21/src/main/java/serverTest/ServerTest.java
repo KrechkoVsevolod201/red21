@@ -14,7 +14,7 @@ public class ServerTest {
     //public static void main(String[] args) {
         try {
             try {
-                    server = new ServerSocket(args); // серверсокет прослушивает порт 4004
+                    server = new ServerSocket(8080); // серверсокет прослушивает порт 4004
                     System.out.println("Сервер запущен!"); // хорошо бы серверу
                     //   объявить о своем запуске
                     clientSocket = server.accept(); // accept() будет ждать пока
