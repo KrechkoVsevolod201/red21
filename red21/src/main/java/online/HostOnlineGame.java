@@ -15,12 +15,14 @@ import static java.lang.Thread.sleep;
 public class HostOnlineGame extends JFrame{
     // Текстовые поля
     JTextField smallField1, smallField2, smallField3, smallField4, smallField5, smallField6;
-    public final JButton throwButton1 = new JButton("Бросить кубик p1");
+    public final JButton throwButton1 = new JButton("обновить");
     public final JButton throwButton2 = new JButton("Бросить кубик p2");
     public final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
-    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, port = 0;
+    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
     public String numberStr1, numberStr2;
+    private String port = "1234";
+    private String ip = "127.0.0.1";
     public HostOnlineGame()
     {
         super("21");
@@ -36,15 +38,6 @@ public class HostOnlineGame extends JFrame{
         }
         setVisible(true); //  форма будет видимой
 
-        try (FileReader fr = new FileReader("saved\\playerOneHostPort.txt")) {
-            // читаем посимвольно
-            BufferedReader reader = new BufferedReader(fr);
-            String line = reader.readLine();
-            port = Integer.parseInt(line);;
-        } catch (IOException ex) {
-
-            System.out.println(ex.getMessage());
-        }
 
 
     }
@@ -257,24 +250,135 @@ public class HostOnlineGame extends JFrame{
         });
 
 
-        throwButton1.setActionCommand("Open");
+        throwButton2.setActionCommand("Open");
         totalGUI.add(throwButton1); // добавляем кнопку на поверхность
 
-/*
-        String path = "C:\\Users\\GachiBoy\\Documents\\GitHub\\red21\\red21\\images\\tenor.gif";
-        File file = new File(path);
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        JLabel label = new JLabel(new ImageIcon(image));
-        label.setLocation(200, 350); // расположение кнопки
-        label.setSize(250, 300); // размер кнопки
-        totalGUI.add(label);
+        // Создаём кнопку---------------
+        throwButton2.setLocation(300, 350); // расположение кнопки
+        throwButton2.setSize(200, 40); // размер кнопки
+        throwButton2.setBackground(new Color(0xC175EF));
+        // создаём объект-обработчик события
+        throwButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
 
- */
+                try {
+                    URL url = new URL("http://" + ip + ":" + port + "/playerOneScore.txt");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+                    File f1 = new File("saved\\playerOneScore.txt");
+                    FileOutputStream fw = new FileOutputStream(f1);
+
+                    byte[] b = new byte[1024];
+                    int count = 0;
+
+                    while ((count=bis.read(b)) != -1)
+                        fw.write(b,0,count);
+
+                    fw.close();
+                } catch (IOException ex) {
+                }
+
+                try {
+                    URL url = new URL("http://" + ip + ":" + port + "/playerOneSum.txt");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+                    File f1 = new File("saved\\playerOneSum.txt");
+                    FileOutputStream fw = new FileOutputStream(f1);
+
+                    byte[] b = new byte[1024];
+                    int count = 0;
+
+                    while ((count=bis.read(b)) != -1)
+                        fw.write(b,0,count);
+
+                    fw.close();
+                } catch (IOException ex) {
+                }
+
+                try {
+                    URL url = new URL("http://" + ip + ":" + port + "/playerOneThrow.txt");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+                    File f1 = new File("saved\\playerOneThrow.txt");
+                    FileOutputStream fw = new FileOutputStream(f1);
+
+                    byte[] b = new byte[1024];
+                    int count = 0;
+
+                    while ((count=bis.read(b)) != -1)
+                        fw.write(b,0,count);
+
+                    fw.close();
+                } catch (IOException ex) {
+                }
+
+                try {
+                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoThrow.txt");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+                    File f1 = new File("saved\\playerTwoThrow.txt");
+                    FileOutputStream fw = new FileOutputStream(f1);
+
+                    byte[] b = new byte[1024];
+                    int count = 0;
+
+                    while ((count=bis.read(b)) != -1)
+                        fw.write(b,0,count);
+
+                    fw.close();
+                } catch (IOException ex) {
+                }
+
+                try {
+                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoSum.txt");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+                    File f1 = new File("saved\\playerTwoSum.txt");
+                    FileOutputStream fw = new FileOutputStream(f1);
+
+                    byte[] b = new byte[1024];
+                    int count = 0;
+
+                    while ((count=bis.read(b)) != -1)
+                        fw.write(b,0,count);
+
+                    fw.close();
+                } catch (IOException ex) {
+                }
+
+                try {
+                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoScore.txt");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+                    File f1 = new File("saved\\playerTwoScore.txt");
+                    FileOutputStream fw = new FileOutputStream(f1);
+
+                    byte[] b = new byte[1024];
+                    int count = 0;
+
+                    while ((count=bis.read(b)) != -1)
+                        fw.write(b,0,count);
+
+                    fw.close();
+                } catch (IOException ex) {
+                }
+
+            }
+        });
+        throwButton2.setActionCommand("Open");
+        totalGUI.add(throwButton2); // добавляем кнопку на поверхность
 
         JLabel label = new JLabel();
         Image image = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
