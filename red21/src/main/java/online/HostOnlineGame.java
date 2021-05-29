@@ -16,7 +16,7 @@ public class HostOnlineGame extends JFrame{
     // Текстовые поля
     JTextField smallField1, smallField2, smallField3, smallField4, smallField5, smallField6;
     private final JButton throwButton1 = new JButton("обновить");
-    private final JButton throwButton2 = new JButton("Бросить кубик p2");
+    private final JButton reload = new JButton("Бросить кубик p2");
     private final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
     public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
@@ -207,28 +207,9 @@ public class HostOnlineGame extends JFrame{
                     System.out.println(ex.getMessage());
                 }
 
-                try {
-                    URL url = new URL("http://127.0.0.1:1234/playerOneSum.txt");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                    File f1 = new File("1.txt");
-                    FileOutputStream fw = new FileOutputStream(f1);
-
-                    byte[] b = new byte[1024];
-                    int count = 0;
-
-                    while ((count=bis.read(b)) != -1)
-                        fw.write(b,0,count);
-
-                    fw.close();
-                } catch (IOException ex) {
                     //jButton2.disable
                     //jButton2.enable();
 
-
-                }
 
             }
 
@@ -239,11 +220,11 @@ public class HostOnlineGame extends JFrame{
         totalGUI.add(throwButton1); // добавляем кнопку на поверхность
 
         // Создаём кнопку---------------
-        throwButton2.setLocation(300, 350); // расположение кнопки
-        throwButton2.setSize(200, 40); // размер кнопки
-        throwButton2.setBackground(new Color(0xC175EF));
+        reload.setLocation(300, 350); // расположение кнопки
+        reload.setSize(200, 40); // размер кнопки
+        reload.setBackground(new Color(0xC175EF));
         // создаём объект-обработчик события
-        throwButton2.addActionListener(new ActionListener() {
+        reload.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 try {
@@ -362,8 +343,8 @@ public class HostOnlineGame extends JFrame{
 
             }
         });
-        throwButton2.setActionCommand("Open");
-        totalGUI.add(throwButton2); // добавляем кнопку на поверхность
+        reload.setActionCommand("Open");
+        totalGUI.add(reload); // добавляем кнопку на поверхность
 
         JLabel label = new JLabel();
         Image image = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
