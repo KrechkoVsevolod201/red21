@@ -1,22 +1,16 @@
 package online;
 
-import httpServerTest.Server;
-import serverTest.ClientTest;
-import serverTest.ServerTest;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Random;
 
 import static java.lang.Thread.sleep;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class HostOnlineGame extends JFrame{
     // Текстовые поля
@@ -221,7 +215,7 @@ public class HostOnlineGame extends JFrame{
                 }
 
                 try {
-                    URL url = new URL("http://localhost/fls/1.txt");
+                    URL url = new URL("http://127.0.0.1:1234/playerOneSum.txt");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                     BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());

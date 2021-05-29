@@ -1,4 +1,4 @@
-package serverTest;
+package garbage.serverTest;
 import java.io.*;
 import java.net.Socket;
 

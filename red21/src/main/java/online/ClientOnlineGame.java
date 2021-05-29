@@ -1,14 +1,11 @@
 package online;
 
-import serverTest.ClientTest;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Random;
@@ -228,27 +225,6 @@ public class ClientOnlineGame extends JFrame{
                     ioException.printStackTrace();
                 }
 
-                try {
-                    URL url = new URL("http://127.0.0.1:1234/playerOneSum.txt");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                    File f1 = new File("saved\\1.txt");
-                    FileOutputStream fw = new FileOutputStream(f1);
-
-                    byte[] b = new byte[1024];
-                    int count = 0;
-
-                    while ((count=bis.read(b)) != -1)
-                        fw.write(b,0,count);
-
-                    fw.close();
-                } catch (IOException ex) {
-                }
-
-                //new ClientTest(port);
-
             }
 
         });
@@ -271,6 +247,38 @@ public class ClientOnlineGame extends JFrame{
         totalGUI.add(label);
 
  */
+
+        // Создаём кнопку---------------
+        throwButton1.setLocation(100, 350); // расположение кнопки
+        throwButton1.setSize(200, 40); // размер кнопки
+        throwButton1.setBackground(new Color(0xC175EF));
+        // создаём объект-обработчик события
+        throwButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    URL url = new URL("http://127.0.0.1:1234/playerOneSum.txt");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+                    File f1 = new File("saved\\1.txt");
+                    FileOutputStream fw = new FileOutputStream(f1);
+
+                    byte[] b = new byte[1024];
+                    int count = 0;
+
+                    while ((count=bis.read(b)) != -1)
+                        fw.write(b,0,count);
+
+                    fw.close();
+                } catch (IOException ex) {
+                }
+
+            }
+        });
+        throwButton2.setActionCommand("Open");
+        totalGUI.add(throwButton2); // добавляем кнопку на поверхность
 
         JLabel label = new JLabel();
         Image image = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
