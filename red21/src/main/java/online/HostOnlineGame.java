@@ -237,6 +237,10 @@ public class HostOnlineGame extends JFrame{
 
                     fw.close();
                 } catch (IOException ex) {
+                    //jButton2.disable
+                    //jButton2.enable();
+
+
                 }
 
                 /*
