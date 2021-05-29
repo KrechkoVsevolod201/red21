@@ -15,8 +15,8 @@ import static java.lang.Thread.sleep;
 public class ClientOnlineGame extends JFrame{
     // Текстовые поля
     JTextField smallField1, smallField2, smallField3, smallField4, smallField5, smallField6;
-    private final JButton throwButton1 = new JButton("Бросить кубик p1");
-    private final JButton throwButton2 = new JButton("обновить");
+    private final JButton reload2 = new JButton("Обновить");
+    private final JButton throwButton2 = new JButton("Бросить кубик p1");
     private final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
     public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
@@ -228,11 +228,11 @@ public class ClientOnlineGame extends JFrame{
 
 
         // Создаём кнопку---------------
-        throwButton1.setLocation(100, 350); // расположение кнопки
-        throwButton1.setSize(200, 40); // размер кнопки
-        throwButton1.setBackground(new Color(0xC175EF));
+        reload2.setLocation(100, 350); // расположение кнопки
+        reload2.setSize(200, 40); // размер кнопки
+        reload2.setBackground(new Color(0xC175EF));
         // создаём объект-обработчик события
-        throwButton1.addActionListener(new ActionListener() {
+        reload2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 try {
@@ -351,8 +351,8 @@ public class ClientOnlineGame extends JFrame{
 
             }
         });
-        throwButton1.setActionCommand("Open");
-        totalGUI.add(throwButton1); // добавляем кнопку на поверхность
+        reload2.setActionCommand("Open");
+        totalGUI.add(reload2); // добавляем кнопку на поверхность
 
         JLabel label = new JLabel();
         Image image = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
