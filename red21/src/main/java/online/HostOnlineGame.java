@@ -21,8 +21,8 @@ public class HostOnlineGame extends JFrame{
     Font font = new Font("Serif", Font.BOLD, 35);
     public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
     public String numberStr1, numberStr2;
-    private String port = "1234";
-    private String ip = "127.0.0.1";
+    private String port = "4321";
+    private String ip = "192.168.1.44";
     public HostOnlineGame()
     {
         super("21");
