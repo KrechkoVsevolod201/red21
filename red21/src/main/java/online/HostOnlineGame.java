@@ -230,27 +230,12 @@ public class HostOnlineGame extends JFrame{
 
                 }
 
-                /*
-                new ServerTest(port);
-                try (FileReader fr = new FileReader("saved\\playerTwoSum.txt")) {
-                    // читаем посимвольно
-                    BufferedReader reader = new BufferedReader(fr);
-                    String line = reader.readLine();
-                    smallField4.setText(line);
-                } catch (IOException ex) {
-
-                    System.out.println(ex.getMessage());
-                }
-                 */
-
-                //new Server(port, "saved").start();
-
             }
 
         });
 
 
-        throwButton2.setActionCommand("Open");
+        throwButton1.setActionCommand("Open");
         totalGUI.add(throwButton1); // добавляем кнопку на поверхность
 
         // Создаём кнопку---------------
