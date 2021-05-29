@@ -15,9 +15,9 @@ import static java.lang.Thread.sleep;
 public class HostOnlineGame extends JFrame{
     // Текстовые поля
     JTextField smallField1, smallField2, smallField3, smallField4, smallField5, smallField6;
-    public final JButton throwButton1 = new JButton("обновить");
-    public final JButton throwButton2 = new JButton("Бросить кубик p2");
-    public final JButton rickButton = new JButton("Rick Roll");
+    private final JButton throwButton1 = new JButton("обновить");
+    private final JButton throwButton2 = new JButton("Бросить кубик p2");
+    private final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
     public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
     public String numberStr1, numberStr2;
