@@ -341,6 +341,69 @@ public class HostOnlineGame extends JFrame{
                 } catch (IOException ex) {
                 }
 
+                //Чтение
+
+                try(FileReader fr = new FileReader("saved\\playerOneThrow.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    smallField1.setText(line);
+
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+                try(FileReader fr = new FileReader("saved\\playerTwoThrow.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    smallField2.setText(line);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+                try(FileReader fr = new FileReader("saved\\playerOneSum.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    smallField3.setText(line);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+                try(FileReader fr = new FileReader("saved\\playerTwoSum.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    smallField4.setText(line);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+                try(FileReader fr = new FileReader("saved\\playerOneScore.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    smallField5.setText(line);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+                try(FileReader fr = new FileReader("saved\\playerTwoScore.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    smallField6.setText(line);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
             }
         });
         reload.setActionCommand("Open");
