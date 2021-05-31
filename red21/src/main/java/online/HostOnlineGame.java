@@ -18,7 +18,7 @@ public class HostOnlineGame extends JFrame{
     private final JButton reload = new JButton("Обновить");
     private final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
-    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, step = 0;
+    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, step = 2;
     public String numberStr1, numberStr2, stepStr;
     private String port = "4321";
     private String ip = "192.168.1.65";
