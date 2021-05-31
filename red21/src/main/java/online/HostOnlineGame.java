@@ -18,8 +18,8 @@ public class HostOnlineGame extends JFrame{
     private final JButton reload = new JButton("Обновить");
     private final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
-    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
-    public String numberStr1, numberStr2;
+    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, step = 0;
+    public String numberStr1, numberStr2, stepStr;
     private String port = "4321";
     private String ip = "192.168.1.65";
     public HostOnlineGame()
@@ -206,8 +206,20 @@ public class HostOnlineGame extends JFrame{
                     System.out.println(ex.getMessage());
                 }
 
-                    //jButton2.disable
-                    //jButton2.enable();
+                step++;
+                stepStr = String.valueOf(step);
+
+                try(FileWriter writer = new FileWriter("saved\\step.txt", false))
+                {
+                    // запись всей строки
+                    writer.write(stepStr);
+                    writer.flush();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+
+                throwButton1.disable();
             }
 
         });
@@ -401,6 +413,20 @@ public class HostOnlineGame extends JFrame{
                     ioException.printStackTrace();
                 }
 
+                try(FileReader fr = new FileReader("saved\\step.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    stepStr = line;
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                step = Integer.valueOf(stepStr);
+
+                if(step%2 == 0){
+                    throwButton1.enable();
+                }
             }
         });
 

@@ -18,10 +18,10 @@ public class ClientOnlineGame extends JFrame{
     private final JButton throwButton2 = new JButton("Бросить кубик p1");
     private final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
-    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
+    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, step;
     public String port = "1234";
     public String ip = "192.168.1.50";
-    public String numberStr1, numberStr2;
+    public String numberStr1, numberStr2, stepStr;
     public ClientOnlineGame()
     {
         super("21");
@@ -217,10 +217,25 @@ public class ClientOnlineGame extends JFrame{
                     ioException.printStackTrace();
                 }
 
+                step++;
+                stepStr = String.valueOf(step);
+
+                try(FileWriter writer = new FileWriter("saved\\step.txt", false))
+                {
+                    // запись всей строки
+                    writer.write(stepStr);
+                    writer.flush();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+
+                throwButton2.disable();
+
             }
 
         });
-
+        throwButton2.disable();
         throwButton2.setActionCommand("Open");
         totalGUI.add(throwButton2); // добавляем кнопку на поверхность
 
@@ -411,6 +426,20 @@ public class ClientOnlineGame extends JFrame{
                     ioException.printStackTrace();
                 }
 
+                try(FileReader fr = new FileReader("saved\\step.txt"))
+                {
+                    // читаем посимвольно
+                    BufferedReader reader = new BufferedReader(fr);
+                    String line = reader.readLine();
+                    stepStr = line;
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                step = Integer.valueOf(stepStr);
+
+                if(step%2 == 1){
+                    throwButton2.enable();
+                }
 
             }
         });
