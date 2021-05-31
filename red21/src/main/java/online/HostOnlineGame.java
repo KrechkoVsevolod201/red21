@@ -219,7 +219,7 @@ public class HostOnlineGame extends JFrame{
                     System.out.println(ex.getMessage());
                 }
 
-                throwButton1.disable();
+                throwButton1.setEnabled(false);
             }
 
         });
@@ -425,7 +425,7 @@ public class HostOnlineGame extends JFrame{
                 step = Integer.valueOf(stepStr);
 
                 if(step%2 == 0){
-                    throwButton1.enable();
+                    throwButton1.setEnabled(true);
                 }
             }
         });

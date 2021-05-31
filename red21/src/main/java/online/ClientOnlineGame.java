@@ -230,12 +230,12 @@ public class ClientOnlineGame extends JFrame{
                     System.out.println(ex.getMessage());
                 }
 
-                throwButton2.disable();
+                throwButton2.setEnabled(false);
 
             }
 
         });
-        throwButton2.disable();
+        throwButton2.setEnabled(false);
         throwButton2.setActionCommand("Open");
         totalGUI.add(throwButton2); // добавляем кнопку на поверхность
 
@@ -438,7 +438,7 @@ public class ClientOnlineGame extends JFrame{
                 step = Integer.valueOf(stepStr);
 
                 if(step%2 == 1){
-                    throwButton2.enable();
+                    throwButton2.setEnabled(true);
                 }
 
             }
