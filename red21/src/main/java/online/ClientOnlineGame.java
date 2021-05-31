@@ -10,7 +10,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
 
 public class ClientOnlineGame extends JFrame{
     // Текстовые поля
@@ -415,6 +414,7 @@ public class ClientOnlineGame extends JFrame{
 
             }
         });
+
         reload2.setActionCommand("Open");
         totalGUI.add(reload2); // добавляем кнопку на поверхность
 
@@ -431,11 +431,4 @@ public class ClientOnlineGame extends JFrame{
         totalGUI.setBackground(Color.DARK_GRAY);
         return totalGUI; // возвращаем внешний вид
     }
-
-/*
-    public static void main(String[] args) {
-        new MainWindow();
-    }
-
- */
 }

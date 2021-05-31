@@ -10,7 +10,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
 
 public class HostOnlineGame extends JFrame{
     // Текстовые поля
@@ -22,7 +21,7 @@ public class HostOnlineGame extends JFrame{
     public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
     public String numberStr1, numberStr2;
     private String port = "4321";
-    private String ip = "192.168.1.44";
+    private String ip = "192.168.1.65";
     public HostOnlineGame()
     {
         super("21");
@@ -209,8 +208,6 @@ public class HostOnlineGame extends JFrame{
 
                     //jButton2.disable
                     //jButton2.enable();
-
-
             }
 
         });
@@ -406,6 +403,7 @@ public class HostOnlineGame extends JFrame{
 
             }
         });
+
         reload.setActionCommand("Open");
         totalGUI.add(reload); // добавляем кнопку на поверхность
 
@@ -422,13 +420,4 @@ public class HostOnlineGame extends JFrame{
         totalGUI.setBackground(Color.DARK_GRAY);
         return totalGUI; // возвращаем внешний вид
     }
-
-/*
-    public static void main(String[] args) {
-        new online.HostOnlineGame();
-    }
-
-
-
- */
 }

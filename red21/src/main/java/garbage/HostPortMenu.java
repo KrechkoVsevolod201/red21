@@ -1,6 +1,7 @@
-package online;
+package garbage;
 
 import instruments.JTextFieldLimit;
+import online.HostOnlineGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +11,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class ClientPortMenu extends JFrame {
+public class HostPortMenu extends JFrame{
     JTextField port;
-    Font font = new Font("Serif", Font.BOLD, 35);
     private String portStr;
-    public int xPort;
-    public ClientPortMenu()
+    Font font = new Font("Serif", Font.BOLD, 35);
+    public HostPortMenu()
     {
         super("21");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -24,14 +24,14 @@ public class ClientPortMenu extends JFrame {
         setSize(450, 250);
         setVisible(true);
         try {
-            setContentPane(panelClient()); // передаем как параметр в коструктор
+            setContentPane(panelHost()); // передаем как параметр в коструктор
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         setVisible(true); //  форма будет видимой
     }
 
-    public JPanel panelClient() throws URISyntaxException  {
+    public JPanel panelHost() throws URISyntaxException  {
         // We create a bottom JPanel to place everything on.
         // сначала создаётся "панель", на которой и размещаюся
         // остальные компоненты
@@ -48,12 +48,13 @@ public class ClientPortMenu extends JFrame {
         port.setFont(font);
         port.setDocument
                 (new JTextFieldLimit(4));
+
         port.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 portStr = port.getText();
 
-                try(FileWriter writer = new FileWriter("saved\\playerTwoHostPort.txt", false))
+                try(FileWriter writer = new FileWriter("saved\\playerOneHostPort.txt", false))
                 {
                     // запись всей строки
                     writer.write(portStr);
@@ -62,11 +63,15 @@ public class ClientPortMenu extends JFrame {
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+
+                new HostOnlineGame();
                 int number = Integer.parseInt(portStr);
+                //new garbage.ServerHost(number);
                 //new garbage.Client(number);
-                new ClientOnlineGame();
                 //new Server(number, "saved").start();
-                ClientPortMenu.super.setVisible(false);
+                HostPortMenu.super.setVisible(false);
+
+
             }
         });
 
@@ -80,7 +85,8 @@ public class ClientPortMenu extends JFrame {
     }
     /*
     public static void main(String[] args) {
-        new ClientMenu();
+        new HostMenu();
     }
+
      */
 }

@@ -1,6 +1,7 @@
-package online;
+package garbage;
 
 import instruments.JTextFieldLimit;
+import online.ClientOnlineGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,11 +11,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class HostPortMenu extends JFrame{
+public class ClientPortMenu extends JFrame {
     JTextField port;
-    private String portStr;
     Font font = new Font("Serif", Font.BOLD, 35);
-    public HostPortMenu()
+    private String portStr;
+    public int xPort;
+    public ClientPortMenu()
     {
         super("21");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -23,14 +25,14 @@ public class HostPortMenu extends JFrame{
         setSize(450, 250);
         setVisible(true);
         try {
-            setContentPane(panelHost()); // передаем как параметр в коструктор
+            setContentPane(panelClient()); // передаем как параметр в коструктор
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         setVisible(true); //  форма будет видимой
     }
 
-    public JPanel panelHost() throws URISyntaxException  {
+    public JPanel panelClient() throws URISyntaxException  {
         // We create a bottom JPanel to place everything on.
         // сначала создаётся "панель", на которой и размещаюся
         // остальные компоненты
@@ -47,13 +49,12 @@ public class HostPortMenu extends JFrame{
         port.setFont(font);
         port.setDocument
                 (new JTextFieldLimit(4));
-
         port.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 portStr = port.getText();
 
-                try(FileWriter writer = new FileWriter("saved\\playerOneHostPort.txt", false))
+                try(FileWriter writer = new FileWriter("saved\\playerTwoHostPort.txt", false))
                 {
                     // запись всей строки
                     writer.write(portStr);
@@ -62,15 +63,11 @@ public class HostPortMenu extends JFrame{
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
-
-                new HostOnlineGame();
                 int number = Integer.parseInt(portStr);
-                //new garbage.ServerHost(number);
                 //new garbage.Client(number);
+                new ClientOnlineGame();
                 //new Server(number, "saved").start();
-                HostPortMenu.super.setVisible(false);
-
-
+                ClientPortMenu.super.setVisible(false);
             }
         });
 
@@ -84,8 +81,7 @@ public class HostPortMenu extends JFrame{
     }
     /*
     public static void main(String[] args) {
-        new HostMenu();
+        new ClientMenu();
     }
-
      */
 }

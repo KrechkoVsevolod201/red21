@@ -33,16 +33,7 @@ public class OnlineChoice extends JFrame{
         // остальные компоненты
         JPanel menu = new JPanel(); // создаём "поверхность"
         menu.setLayout(null);
-/*
-        JLabel label = new JLabel();
-        Image image = Toolkit.getDefaultToolkit().createImage("images/menuTheme.jpg");
-        ImageIcon imageIcon = new ImageIcon(image);
-        imageIcon.setImageObserver(label);
-        label.setIcon(imageIcon);
-        //label.setLocation(100, 100); // расположение кнопки
-        //label.setSize(1000, 1000); // размер кнопки
-        menushka.add(label);
-*/
+
         // Создаём кнопку---------------
         hostButton.setLocation(50, 50); // расположение кнопки
         hostButton.setSize(100, 50); // размер кнопки
@@ -73,20 +64,11 @@ public class OnlineChoice extends JFrame{
 
         clientButton.setActionCommand("Open");
         menu.add(clientButton); // добавляем кнопку на поверхность
-/*
-        Image image = Toolkit.getDefaultToolkit().createImage("images/menuTheme.jpg");
-        ImageIcon imageIcon = new ImageIcon(image);
-*/
+
         menu.setOpaque(true);
-        //menushka.setBackground(Color.DARK_GRAY);
         return menu; // возвращаем внешний вид
 
 
     }
-    /*
-    public static void main(String[] args) {
-        new online.OnlineChoice();
-    }
 
-     */
 }

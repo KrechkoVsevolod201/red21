@@ -298,21 +298,6 @@ public class OfflineGame extends JFrame
         rickButton.setActionCommand("Open");
         rickButton.addActionListener(new OpenUrlAction());
         totalGUI.add(rickButton); // добавляем кнопку на поверхность
-/*
-        String path = "C:\\Users\\GachiBoy\\Documents\\GitHub\\red21\\red21\\images\\tenor.gif";
-        File file = new File(path);
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        JLabel label = new JLabel(new ImageIcon(image));
-        label.setLocation(200, 350); // расположение кнопки
-        label.setSize(250, 300); // размер кнопки
-        totalGUI.add(label);
-
- */
 
         JLabel label = new JLabel();
         Image image = Toolkit.getDefaultToolkit().createImage("images/tenor.gif");
@@ -335,10 +320,4 @@ public class OfflineGame extends JFrame
             } catch (IOException e) { /* TODO: error handling */ }
         } else { /* TODO: error handling */ }
     }
-/*
-    public static void main(String[] args) {
-        new MainWindow();
-    }
-
- */
 }
