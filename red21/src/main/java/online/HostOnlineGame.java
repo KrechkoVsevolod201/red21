@@ -443,6 +443,25 @@ public class HostOnlineGame extends JFrame{
                     ioException.printStackTrace();
                 }
 
+                try {
+                    URL url = new URL("http://" + ip + ":" + port + "/step.txt");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+                    File f1 = new File("saved\\step.txt");
+                    FileOutputStream fw = new FileOutputStream(f1);
+
+                    byte[] b = new byte[1024];
+                    int count = 0;
+
+                    while ((count=bis.read(b)) != -1)
+                        fw.write(b,0,count);
+
+                    fw.close();
+                } catch (IOException ex) {
+                }
+
                 try(FileReader fr = new FileReader("saved\\step.txt"))
                 {
                     // читаем посимвольно
