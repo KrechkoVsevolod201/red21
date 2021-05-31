@@ -135,6 +135,35 @@ public class ClientOnlineGame extends JFrame{
         poweredLabel.setForeground(Color.blue); // задаём цвет
         totalGUI.add(poweredLabel); // добавляем текстовую метку на поверхность
 
+        try(FileWriter writer = new FileWriter("saved\\playerOneThrow.txt", false))
+        {
+            // запись всей строки
+            writer.write("0");
+            writer.flush();
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try(FileWriter writer = new FileWriter("saved\\playerOneSum.txt", false))
+        {
+            // запись всей строки
+            writer.write("0");
+            writer.flush();
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try(FileWriter writer = new FileWriter("saved\\playerOneScore.txt", false))
+        {
+            // запись всей строки
+            writer.write("0");
+            writer.flush();
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
 
         // Создаём кнопку---------------
         throwButton2.setLocation(300, 350); // расположение кнопки
