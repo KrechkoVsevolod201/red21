@@ -7,9 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class JsonReader {
+    private String memory = "";
 
     public JsonReader(String file) {
-        //public static void main(String[] args) {
         try (FileReader fr = new FileReader("saved\\" + file + ".json")) {
             // читаем посимвольно
             BufferedReader reader = new BufferedReader(fr);
@@ -20,8 +20,18 @@ public class JsonReader {
             for (int i = 19; i < result.length; i++) {
                 line = line + result[i];
             }
+            memory = line;
         } catch (IOException ioException) {
             ioException.printStackTrace();
+        }
+
+        try(FileWriter writer = new FileWriter("saved\\" + file + ".txt", false))
+        {
+            writer.write(memory);
+            writer.flush();
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
         }
 
     }
