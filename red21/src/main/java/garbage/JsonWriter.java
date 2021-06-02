@@ -5,10 +5,9 @@ import java.io.IOException;
 
 public class JsonWriter {
 
-    public JsonWriter(String number){
-    //public static void main(String[] args) {
+    public JsonWriter(String file, String number){
         try(
-                FileWriter writer = new FileWriter("saved\\Yuh.json", false))
+                FileWriter writer = new FileWriter("saved\\" + file + ".json", false))
         {
             // запись всей строки
             final char dm = (char) 34;
@@ -24,6 +23,6 @@ public class JsonWriter {
     }
 
     public static void main(String[] args) {
-        new JsonWriter("1234");
+        new JsonWriter("Yuh","1234");
     }
 }
