@@ -75,10 +75,7 @@ public class MainMenu extends JFrame {
 
         offline.setActionCommand("Open");
         menushka.add(offline); // добавляем кнопку на поверхность
-/*
-        Image image = Toolkit.getDefaultToolkit().createImage("images/menuTheme.jpg");
-        ImageIcon imageIcon = new ImageIcon(image);
-*/
+
         menushka.setOpaque(true);
         //menushka.setBackground(Color.DARK_GRAY);
         return menushka; // возвращаем внешний вид
