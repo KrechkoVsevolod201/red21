@@ -48,6 +48,7 @@ public class JsonReader {
             ioException.printStackTrace();
         }
 
+
         System.out.println("memory:" + memory);
 
         try(FileWriter writer = new FileWriter("saved\\" + file + ".txt", false))
