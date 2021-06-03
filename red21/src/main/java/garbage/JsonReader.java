@@ -35,12 +35,12 @@ public class JsonReader {
 
 
         try {
-            URL url = new URL("http://" + ip + ":" + port + "/playerOneSum.json");
+            URL url = new URL("http://" + ip + ":" + port + "/" + file + ".json");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
 
-            File f1 = new File("saved\\playerOneSum.json");
+            File f1 = new File("saved\\" + file + ".json");
             FileOutputStream fw = new FileOutputStream(f1);
 
             byte[] b = new byte[1024];
