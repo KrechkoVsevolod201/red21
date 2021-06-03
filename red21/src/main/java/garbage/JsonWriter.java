@@ -22,6 +22,7 @@ public class JsonWriter {
     }
 
     public static void main(String[] args) {
-        new JsonWriter("Yuh","Люблю яйца почесать");
+        final char dm = (char) 34;
+        new JsonWriter("Yuh",(dm +"Сасайкудасай" + dm));
     }
 }
