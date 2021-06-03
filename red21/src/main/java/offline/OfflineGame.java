@@ -1,4 +1,6 @@
 package offline;// Использование текстовых полей JTextField
+import garbage.JsonWriter;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -155,6 +157,7 @@ public class OfflineGame extends JFrame
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerOneThrow");
 
                 try(FileReader reader = new FileReader("saved\\playerOneThrow.txt"))
                 {
@@ -166,7 +169,6 @@ public class OfflineGame extends JFrame
                     }
                 }
                 catch(IOException ex){
-
                     System.out.println(ex.getMessage());
                 }
                 sum1 = sum1 + x1;
@@ -189,6 +191,7 @@ public class OfflineGame extends JFrame
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerOneSum");
 
 
                 try(FileWriter writer = new FileWriter("saved\\playerOneScore.txt", false))
@@ -201,6 +204,7 @@ public class OfflineGame extends JFrame
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerOneScore");
 
             }
 
@@ -231,6 +235,7 @@ public class OfflineGame extends JFrame
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerTwoThrow");
                 try(FileReader reader = new FileReader("saved\\playerTwoThrow.txt"))
                 {
                     // читаем посимвольно
@@ -241,7 +246,6 @@ public class OfflineGame extends JFrame
                     }
                 }
                 catch(IOException ex){
-
                     System.out.println(ex.getMessage());
                 }
                 sum2 = sum2 + x2;
@@ -264,6 +268,7 @@ public class OfflineGame extends JFrame
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerTwoSum");
 
                 try(FileWriter writer = new FileWriter("saved\\playerTwoScore.txt", false))
                 {
@@ -275,6 +280,7 @@ public class OfflineGame extends JFrame
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerTwoScore");
 
             }
 

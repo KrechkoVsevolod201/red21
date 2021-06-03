@@ -24,7 +24,7 @@ public class OnlineJsonHost extends JFrame{
     public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, step = 2;
     public String numberStr1, numberStr2, stepStr;
     private String port = "4321";
-    private String ip = "192.168.43.164";
+    private String ip = "192.168.1.65";
     public OnlineJsonHost()
     {
         super("21");
@@ -149,6 +149,7 @@ public class OnlineJsonHost extends JFrame{
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
+        new JsonWriter("playerTwoThrow");
 
         try(FileWriter writer = new FileWriter("saved\\playerTwoSum.txt", false))
         {
@@ -159,6 +160,7 @@ public class OnlineJsonHost extends JFrame{
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
+        new JsonWriter("playerTwoSum");
 
         try(FileWriter writer = new FileWriter("saved\\playerTwoScore.txt", false))
         {
@@ -169,6 +171,7 @@ public class OnlineJsonHost extends JFrame{
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
+        new JsonWriter("playerTwoScore");
 
         // Создаём кнопку---------------
         throwButton1.setLocation(100, 350); // расположение кнопки
@@ -207,7 +210,6 @@ public class OnlineJsonHost extends JFrame{
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
-                new JsonWriter("playerOneThrow");
                 sum1 = sum1 + x1;
                 numberStr1 = String.valueOf(sum1);
                 smallField3.setText(numberStr1);

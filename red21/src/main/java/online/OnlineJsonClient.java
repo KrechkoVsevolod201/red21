@@ -22,8 +22,8 @@ public class OnlineJsonClient extends JFrame{
     private final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
     public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, step;
-    public String port = "1234";
-    public String ip = "192.168.1.50";
+    public String port = "4321";
+    public String ip = "192.168.1.65";
     public String numberStr1, numberStr2, stepStr;
     public OnlineJsonClient()
     {
@@ -147,6 +147,7 @@ public class OnlineJsonClient extends JFrame{
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
+        new JsonWriter("playerOneThrow");
 
         try(FileWriter writer = new FileWriter("saved\\playerOneSum.txt", false))
         {
@@ -157,6 +158,7 @@ public class OnlineJsonClient extends JFrame{
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
+        new JsonWriter("playerOneSum");
 
         try(FileWriter writer = new FileWriter("saved\\playerOneScore.txt", false))
         {
@@ -167,6 +169,7 @@ public class OnlineJsonClient extends JFrame{
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
+        new JsonWriter("playerOneScore");
 
         // Создаём кнопку---------------
         throwButton2.setLocation(300, 350); // расположение кнопки
