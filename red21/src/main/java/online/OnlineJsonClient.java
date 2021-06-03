@@ -1,5 +1,7 @@
 package online;
 
+import garbage.JsonReader;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -279,26 +281,18 @@ public class OnlineJsonClient extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerOneScore.txt");
+                    URL url = new URL("http://" + ip + ":" + port + "/playerOneScore.json");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                     BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
 
                     File f1 = new File("saved\\playerOneScore.txt");
-                    FileOutputStream fw = new FileOutputStream(f1);
-
-                    byte[] b = new byte[1024];
-                    int count = 0;
-
-                    while ((count=bis.read(b)) != -1)
-                        fw.write(b,0,count);
-
-                    fw.close();
+                    new JsonReader("playerOneScore", ip, port);
                 } catch (IOException ex) {
                 }
 
                 try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerOneSum.txt");
+                    URL url = new URL("http://" + ip + ":" + port + "/playerOneSum.json");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                     BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
@@ -317,7 +311,7 @@ public class OnlineJsonClient extends JFrame{
                 }
 
                 try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerOneThrow.txt");
+                    URL url = new URL("http://" + ip + ":" + port + "/playerOneThrow.json");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                     BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
@@ -336,7 +330,7 @@ public class OnlineJsonClient extends JFrame{
                 }
 
                 try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoThrow.txt");
+                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoThrow.json");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                     BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
@@ -355,7 +349,7 @@ public class OnlineJsonClient extends JFrame{
                 }
 
                 try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoSum.txt");
+                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoSum.json");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                     BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
@@ -374,7 +368,7 @@ public class OnlineJsonClient extends JFrame{
                 }
 
                 try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoScore.txt");
+                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoScore.json");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                     BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());

@@ -11,7 +11,6 @@ public class JsonWriter {
         {
             // запись всей строки
             final char dm = (char) 34;
-            final String quotes = "" + dm;
             writer.write("{\n");
             writer.write(dm + "playerOneScore" + dm + " : " + number + "\n");
             writer.write("}");
@@ -23,6 +22,6 @@ public class JsonWriter {
     }
 
     public static void main(String[] args) {
-        new JsonWriter("Yuh","1234");
+        new JsonWriter("Yuh","Люблю яйца почесать");
     }
 }

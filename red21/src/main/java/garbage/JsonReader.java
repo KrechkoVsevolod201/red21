@@ -1,15 +1,14 @@
 package garbage;
 
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class JsonReader {
     private String memory = "";
 
-    public JsonReader(String file) {
+    public JsonReader(String file, String ip, String port) {
         try (FileReader fr = new FileReader("saved\\" + file + ".json")) {
             // читаем посимвольно
             BufferedReader reader = new BufferedReader(fr);
@@ -34,9 +33,28 @@ public class JsonReader {
             System.out.println(ex.getMessage());
         }
 
+        try {
+            URL url = new URL("http://" + ip + ":" + port + "/playerOneSum.json");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+
+            File f1 = new File("saved\\playerOneSum.json");
+            FileOutputStream fw = new FileOutputStream(f1);
+
+            byte[] b = new byte[1024];
+            int count = 0;
+
+            while ((count=bis.read(b)) != -1)
+                fw.write(b,0,count);
+
+            fw.close();
+        } catch (IOException ex) {
+        }
+
     }
 
     public static void main(String[] args) {
-        new JsonReader("Yuh");
+        new JsonReader("Yuh", "192.168.1.50", "1234");
     }
 }
