@@ -1,5 +1,6 @@
 import instruments.Sound;
 import offline.OfflineGame;
+import online.JsonOrTxt;
 import online.OnlineChoice;
 
 import javax.swing.*;
@@ -53,7 +54,7 @@ public class MainMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Sound.playSound("sounds\\boyNextDoor.wav");
-                new OnlineChoice();
+                new JsonOrTxt();
             }
         });
 

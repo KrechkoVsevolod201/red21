@@ -9,30 +9,6 @@ public class JsonReader {
     private String memory = "";
 
     public JsonReader(String file, String ip, String port) {
-        try (FileReader fr = new FileReader("saved\\" + file + ".json")) {
-            // читаем посимвольно
-            BufferedReader reader = new BufferedReader(fr);
-            String line = reader.readLine();
-            line = reader.readLine();
-            char[] result = line.toCharArray();
-            line = "";
-            for (int i = 19; i < result.length; i++) {
-                line = line + result[i];
-            }
-            memory = line;
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-
-        try(FileWriter writer = new FileWriter("saved\\" + file + ".txt", false))
-        {
-            writer.write(memory);
-            writer.flush();
-        }
-        catch(IOException ex){
-            System.out.println(ex.getMessage());
-        }
-
 
         try {
             URL url = new URL("http://" + ip + ":" + port + "/" + file + ".json");
@@ -53,6 +29,30 @@ public class JsonReader {
         } catch (IOException ex) {
         }
 
+
+        try (FileReader fr = new FileReader("saved\\" + file + ".json")) {
+            // читаем посимвольно
+            BufferedReader reader = new BufferedReader(fr);
+            String line = "";
+            line = reader.readLine();
+            char[] result = line.toCharArray();
+            line = "";
+            for (int i = 19; i < result.length; i++) {
+                line = line + result[i];
+            }
+            memory = line;
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+        try(FileWriter writer = new FileWriter("saved\\" + file + ".txt", false))
+        {
+            writer.write(memory);
+            writer.flush();
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     public static void main(String[] args) {

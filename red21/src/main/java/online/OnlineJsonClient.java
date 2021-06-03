@@ -1,6 +1,7 @@
 package online;
 
 import garbage.JsonReader;
+import garbage.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -189,6 +190,7 @@ public class OnlineJsonClient extends JFrame{
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerTwoThrow");
                 try(FileReader reader = new FileReader("saved\\playerTwoThrow.txt"))
                 {
                     // читаем посимвольно
@@ -199,9 +201,9 @@ public class OnlineJsonClient extends JFrame{
                     }
                 }
                 catch(IOException ex){
-
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerTwoThrow");
                 sum2 = sum2 + x2;
                 numberStr2 = String.valueOf(sum2);
                 smallField4.setText(numberStr2);
@@ -222,6 +224,7 @@ public class OnlineJsonClient extends JFrame{
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerTwoSum");
 
                 try(FileWriter writer = new FileWriter("saved\\playerTwoScore.txt", false))
                 {
@@ -233,6 +236,7 @@ public class OnlineJsonClient extends JFrame{
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("playerTwoScore");
 
                 try(FileReader fr = new FileReader("saved\\playerOneSum.txt"))
                 {
@@ -260,6 +264,7 @@ public class OnlineJsonClient extends JFrame{
                 catch(IOException ex){
                     System.out.println(ex.getMessage());
                 }
+                new JsonWriter("step");
 
                 throwButton2.setEnabled(false);
 
@@ -280,111 +285,12 @@ public class OnlineJsonClient extends JFrame{
         reload2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerOneScore.json");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                    File f1 = new File("saved\\playerOneScore.txt");
-                    new JsonReader("playerOneScore", ip, port);
-                } catch (IOException ex) {
-                }
-
-                try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerOneSum.json");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                    File f1 = new File("saved\\playerOneSum.txt");
-                    FileOutputStream fw = new FileOutputStream(f1);
-
-                    byte[] b = new byte[1024];
-                    int count = 0;
-
-                    while ((count=bis.read(b)) != -1)
-                        fw.write(b,0,count);
-
-                    fw.close();
-                } catch (IOException ex) {
-                }
-
-                try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerOneThrow.json");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                    File f1 = new File("saved\\playerOneThrow.txt");
-                    FileOutputStream fw = new FileOutputStream(f1);
-
-                    byte[] b = new byte[1024];
-                    int count = 0;
-
-                    while ((count=bis.read(b)) != -1)
-                        fw.write(b,0,count);
-
-                    fw.close();
-                } catch (IOException ex) {
-                }
-
-                try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoThrow.json");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                    File f1 = new File("saved\\playerTwoThrow.txt");
-                    FileOutputStream fw = new FileOutputStream(f1);
-
-                    byte[] b = new byte[1024];
-                    int count = 0;
-
-                    while ((count=bis.read(b)) != -1)
-                        fw.write(b,0,count);
-
-                    fw.close();
-                } catch (IOException ex) {
-                }
-
-                try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoSum.json");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                    File f1 = new File("saved\\playerTwoSum.txt");
-                    FileOutputStream fw = new FileOutputStream(f1);
-
-                    byte[] b = new byte[1024];
-                    int count = 0;
-
-                    while ((count=bis.read(b)) != -1)
-                        fw.write(b,0,count);
-
-                    fw.close();
-                } catch (IOException ex) {
-                }
-
-                try {
-                    URL url = new URL("http://" + ip + ":" + port + "/playerTwoScore.json");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                    File f1 = new File("saved\\playerTwoScore.txt");
-                    FileOutputStream fw = new FileOutputStream(f1);
-
-                    byte[] b = new byte[1024];
-                    int count = 0;
-
-                    while ((count=bis.read(b)) != -1)
-                        fw.write(b,0,count);
-
-                    fw.close();
-                } catch (IOException ex) {
-                }
+                new JsonReader("playerOneScore", ip, port);
+                new JsonReader("playerOneSum", ip, port);
+                new JsonReader("playerOneThrow", ip, port);
+                new JsonReader("playerTwoThrow", ip, port);
+                new JsonReader("playerTwoSum", ip, port);
+                new JsonReader("playerTwoScore", ip, port);
 
                 //Чтение
 
@@ -449,24 +355,7 @@ public class OnlineJsonClient extends JFrame{
                     ioException.printStackTrace();
                 }
 
-                try {
-                    URL url = new URL("http://" + ip + ":" + port + "/step.txt");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                    File f1 = new File("saved\\step.txt");
-                    FileOutputStream fw = new FileOutputStream(f1);
-
-                    byte[] b = new byte[1024];
-                    int count = 0;
-
-                    while ((count=bis.read(b)) != -1)
-                        fw.write(b,0,count);
-
-                    fw.close();
-                } catch (IOException ex) {
-                }
+                new JsonReader("step", ip, port);
 
                 try(FileReader fr = new FileReader("saved\\step.txt"))
                 {
