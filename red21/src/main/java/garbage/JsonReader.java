@@ -6,7 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class JsonReader {
-    private String memory = "";
+    public String memory;
 
     public JsonReader(String file, String ip, String port) {
 
@@ -33,17 +33,22 @@ public class JsonReader {
         try (FileReader fr = new FileReader("saved\\" + file + ".json")) {
             // читаем посимвольно
             BufferedReader reader = new BufferedReader(fr);
-            String line = "";
+            String line = "", line2 = "";
+            line = reader.readLine();
+            line = "";
             line = reader.readLine();
             char[] result = line.toCharArray();
-            line = "";
+            System.out.println(result.length);
             for (int i = 19; i < result.length; i++) {
-                line = line + result[i];
+                line2 = line2 + result[i];
+                System.out.println("line:" + line2);
             }
-            memory = line;
+            memory = line2;
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+
+        System.out.println("memory:" + memory);
 
         try(FileWriter writer = new FileWriter("saved\\" + file + ".txt", false))
         {
@@ -53,9 +58,11 @@ public class JsonReader {
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
+
     }
 
+
     public static void main(String[] args) {
-        new JsonReader("Yuh", "192.168.1.50", "1234");
+        new JsonReader("Yuh", "127.0.0.1", "1234");
     }
 }
