@@ -33,6 +33,7 @@ public class JsonReader {
             System.out.println(ex.getMessage());
         }
 
+
         try {
             URL url = new URL("http://" + ip + ":" + port + "/playerOneSum.json");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
