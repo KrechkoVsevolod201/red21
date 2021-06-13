@@ -1,4 +1,4 @@
-package garbage;
+package instruments;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

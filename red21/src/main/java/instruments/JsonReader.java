@@ -1,4 +1,4 @@
-package garbage;
+package instruments;
 
 
 import java.io.*;
