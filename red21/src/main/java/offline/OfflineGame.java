@@ -20,8 +20,8 @@ public class OfflineGame extends JFrame
     private final JButton throwButton2 = new JButton("Бросить кубик p2");
     private final JButton rickButton = new JButton("Rick Roll");
     Font font = new Font("Serif", Font.BOLD, 35);
-    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0;
-    public String numberStr1, numberStr2;
+    public int number1, number2, sum1 = 0, sum2 = 0, x1, x2, score1 = 0, score2 = 0, step = 1;
+    public String numberStr1, numberStr2, stepStr;
     public OfflineGame()
     {
         super("21");
@@ -205,7 +205,10 @@ public class OfflineGame extends JFrame
                 }
                 new JsonWriter("playerOneScore");
 
+                throwButton1.setEnabled(false);
+                throwButton2.setEnabled(true);
             }
+
 
         });
 
@@ -216,6 +219,7 @@ public class OfflineGame extends JFrame
         // Создаём кнопку---------------
         throwButton2.setLocation(300, 350); // расположение кнопки
         throwButton2.setSize(200, 40); // размер кнопки
+        throwButton2.setEnabled(false);
         throwButton2.setBackground(new Color(0xC175EF));
         // создаём объект-обработчик события
         throwButton2.addActionListener(new ActionListener() {
@@ -280,6 +284,9 @@ public class OfflineGame extends JFrame
                     System.out.println(ex.getMessage());
                 }
                 new JsonWriter("playerTwoScore");
+
+                throwButton2.setEnabled(false);
+                throwButton1.setEnabled(true);
 
             }
 
